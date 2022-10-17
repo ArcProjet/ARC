@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from random import randrange
 
 indexTab = []
-index = open('indexTab.txt','r').readlines()
+index = open('data/indexTab.txt','r').readlines()
 for i in index:
     indexTab.append(i.replace('\n',''))
 
