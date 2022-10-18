@@ -8,7 +8,7 @@ for i in index:
     indexTab.append(i.replace('\n',''))
 
 def openJsonFile():
-    f = open('data/training/' + indexTab[randrange(len(indexTab))] + '.json','r')
+    f = open('data/evaluation/' + indexTab[randrange(len(indexTab))] + '.json','r')
     data = json.loads(f.read())
 
     grillestrain = []
