@@ -55,6 +55,3 @@ def draw(grillestrain,grillestest):
     plt.axis('off')
     plt.imshow(grillestest[1])
     plt.show()
-
-grillestrain,grillestest = openJsonFile()
-draw(grillestrain,grillestest)

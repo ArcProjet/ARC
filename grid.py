@@ -43,7 +43,62 @@ class Grid:
                 tmp.append(self.input[i][j])
             res.append(tmp)
         return res
+    
+    def getGridCopy(self):
+        return Grid(self.input,self.output)
 
+    def getCornerUpLeft(self):
+        res = []
+        resRow = self.nbRow // 2
+        resColumn = self.nbColumn // 2
+        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
+            print('Result is not compatible with this function')
+        for i in range(0,resRow):
+            tmpRow = []
+            for j in range(0,resColumn):
+                tmpRow.append(self.input[i][j])
+            res.append(tmpRow)
+        return(res)
+
+    def getCornerUpRight(self):
+        res = []
+        resRow = self.nbRow // 2
+        resColumn = self.nbColumn // 2
+        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
+            print('Result is not compatible with this function')
+        for i in range(0,resRow):
+            tmpRow = []
+            for j in range(0,resColumn):
+                tmpRow.append(self.input[i][j+resColumn])
+            res.append(tmpRow)
+        return(res)
+
+    def getCornerDownLeft(self):
+        res = []
+        resRow = self.nbRow // 2
+        resColumn = self.nbColumn // 2
+        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
+            print('Result is not compatible with this function')
+        for i in range(0,resRow):
+            tmpRow = []
+            for j in range(0,resColumn):
+                tmpRow.append(self.input[i+resRow][j+resColumn])
+            res.append(tmpRow)
+        return(res)
+
+    def getCornerDownRight(self):
+        res = []
+        resRow = self.nbRow // 2
+        resColumn = self.nbColumn // 2
+        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
+            print('Result is not compatible with this function')
+        for i in range(0,resRow):
+            tmpRow = []
+            for j in range(0,resColumn):
+                tmpRow.append(self.input[i+resRow][j])
+            res.append(tmpRow)
+        return(res)
+    
     #Getters
     def getInput(self):
         return self.input

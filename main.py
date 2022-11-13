@@ -1,5 +1,5 @@
 from primitive import *
-from jsonLoader import *
+from JsonLoader import *
 from grid import Grid
 
 if __name__ == '__main__':
@@ -11,6 +11,6 @@ if __name__ == '__main__':
         grid = Grid(grillestrain[0]['input'],grillestrain[1]['input'])
         if(grid.isSquare()):
             isSquare = True
-    
-    rotateRight(grid)
+
+    symetryFourPart(grid,4)
     grid.displayGrid()
