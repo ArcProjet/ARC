@@ -40,7 +40,7 @@ class Grid:
         for i in range(0,self.nbRow):
             tmp = []
             for j in range(0,self.nbColumn):
-                tmp.append(self.input[i][j])
+                tmp.append(self.output[i][j])
             res.append(tmp)
         return res
 
@@ -60,3 +60,6 @@ class Grid:
     #Setters
     def setOutput(self,tab):
         self.output = tab
+
+    def setInput(self,tab):
+        self.input = tab

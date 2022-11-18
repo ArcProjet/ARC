@@ -23,4 +23,4 @@ if __name__ == '__main__':
     while (verif != "Y"):
         fctChoice(4,gridt)
         draw(grillestrain,grillestest,gridt)
-        verif = input("Est ce que c'est le bon résultat ? Y/N")
+        verif = input("Est ce que c'est le bon résultat ? Y/N\n")

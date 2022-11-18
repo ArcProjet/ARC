@@ -8,12 +8,12 @@ def fctChoice(stage,grid):
     for i in range(stage):
         n = randint(1,4)
         if n==1:
-            rotateHalf(grid)
+            grid.setOutput(rotateHalf(grid))
         if n==2:
-            rotateLeft(grid)
+            grid.setOutput(rotateLeft(grid))
         if n==3:
-            rotateRight(grid)
+            grid.setOutput(rotateRight(grid))
         if n==4:
-            centralSymetry(grid)
+            grid.setOutput(centralSymetry(grid))
 
 

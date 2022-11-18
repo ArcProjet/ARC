@@ -1,7 +1,7 @@
 from grid import Grid
 
 def rotateHalf(grid):
-    grid.setOutput(grid.getInput()[::-1])
+    return (grid.getInput()[::-1])
 
 def rotateLeft(grid):
     res = grid.getInputCopy()
@@ -10,7 +10,7 @@ def rotateLeft(grid):
         for j in range(0,grid.getNbColumn()):
             res[i][j] = grid.getInput()[cpt][grid.getNbRow()-i-1]
             cpt += 1
-    grid.setOutput(res)
+    return (res)
 
 def rotateRight(grid):
     res = grid.getInputCopy()
@@ -19,11 +19,11 @@ def rotateRight(grid):
         for j in range(0,grid.getNbColumn()):
             res[i][j] = grid.getInput()[cpt][i]
             cpt -= 1
-    grid.setOutput(res)
+    return (res)
 
 def centralSymetry(grid):
     res = grid.getInputCopy()
     for i in range(0,grid.getNbRow()):
         for j in range(0,grid.getNbColumn()):
             res[i][j] = grid.getInput()[j][i]
-    grid.setOutput(res)
+    return (res)
