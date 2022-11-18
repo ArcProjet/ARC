@@ -6,7 +6,8 @@ from random import randint
 def fctChoice(stage,grid):
 
     for i in range(stage):
-        n = randint(1,4)
+        n = randint(1,5)
+        print(n)
         if n==1:
             grid.setOutput(rotateHalf(grid))
         if n==2:
@@ -15,5 +16,8 @@ def fctChoice(stage,grid):
             grid.setOutput(rotateRight(grid))
         if n==4:
             grid.setOutput(centralSymetry(grid))
+        if n==5:
+            grid.setOutput(symetryFourPart(grid))
+        
 
 

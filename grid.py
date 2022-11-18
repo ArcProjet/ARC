@@ -56,7 +56,7 @@ class Grid:
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):
-                tmpRow.append(self.input[i][j])
+                tmpRow.append(self.output[i][j])
             res.append(tmpRow)
         return(res)
 
@@ -69,7 +69,7 @@ class Grid:
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):
-                tmpRow.append(self.input[i][j+resColumn])
+                tmpRow.append(self.output[i][j+resColumn])
             res.append(tmpRow)
         return(res)
 
@@ -82,7 +82,7 @@ class Grid:
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):
-                tmpRow.append(self.input[i+resRow][j+resColumn])
+                tmpRow.append(self.output[i+resRow][j+resColumn])
             res.append(tmpRow)
         return(res)
 
@@ -95,7 +95,7 @@ class Grid:
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):
-                tmpRow.append(self.input[i+resRow][j])
+                tmpRow.append(self.output[i+resRow][j])
             res.append(tmpRow)
         return(res)
     

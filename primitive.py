@@ -50,5 +50,4 @@ def symetryFourPart(grid):
     for i in range(0,nbRow):
         for j in range(0,nbColumn):
             res[i+nbRow][j] = tmp[i][j]
-    grid.setOutput(res)
-    return res
+    return (res)
