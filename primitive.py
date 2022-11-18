@@ -29,7 +29,7 @@ def centralSymetry(grid):
             res[i][j] = grid.getInput()[j][i]
     grid.setOutput(res)
 
-def symetryFourPartUpLeft(grid):
+def symetryFourPart(grid):
     res = grid.getInputCopy()
     tmp = grid.getCornerUpLeft()
     nbRow = len(tmp)

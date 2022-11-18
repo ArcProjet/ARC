@@ -12,5 +12,6 @@ if __name__ == '__main__':
         if(grid.isSquare()):
             isSquare = True
 
-    symetryFourPart(grid,4)
+    symetryFourPart(grid)
     grid.displayGrid()
+    draw(grillestrain,grillestest)
