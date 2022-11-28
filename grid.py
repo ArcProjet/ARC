@@ -103,7 +103,7 @@ class Grid:
     def getInput(self):
         return self.input
     
-    def getOuput(self):
+    def getOutput(self):
         return self.output
 
     def getNbRow(self):

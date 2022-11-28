@@ -2,14 +2,14 @@ from grid import Grid
 from listeFunctions import *
 
 def rotateHalf(grid):
-    return (grid.getInput()[::-1])
+    return (grid.getInputCopy()[::-1])
 
 def rotateLeft(grid):
     res = grid.getInputCopy()
     for i in range(0,grid.getNbRow()):
         cpt = 0
         for j in range(0,grid.getNbColumn()):
-            res[i][j] = grid.getInput()[cpt][grid.getNbRow()-i-1]
+            res[i][j] = grid.getOutput()[cpt][grid.getNbRow()-i-1]
             cpt += 1
     return (res)
 
@@ -19,7 +19,7 @@ def rotateRight(grid):
     for i in range(0,grid.getNbRow()):
         cpt = grid.getNbRow() - 1
         for j in range(0,grid.getNbColumn()):
-            res[i][j] = grid.getInput()[cpt][i]
+            res[i][j] = grid.getOutput()[cpt][i]
             cpt -= 1
     return (res)
 
@@ -27,7 +27,7 @@ def centralSymetry(grid):
     res = grid.getInputCopy()
     for i in range(0,grid.getNbRow()):
         for j in range(0,grid.getNbColumn()):
-            res[i][j] = grid.getInput()[j][i]
+            res[i][j] = grid.getOutput()[j][i]
     return (res)
 
 def symetryFourPart(grid):

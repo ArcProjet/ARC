@@ -14,7 +14,9 @@ if __name__ == '__main__':
         if(grid.isSquare()):
             isSquare = True
     
-    #rotateRight(grid)
+    #grid.output = symetryFourPart(grid)
+    #grid.displayGrid()
+    #grid.output = centralSymetry(grid)
     #grid.displayGrid()
 
     verif = "N"
