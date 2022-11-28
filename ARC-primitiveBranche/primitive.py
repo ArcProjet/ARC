@@ -35,8 +35,11 @@ def axialSymetryX(grid):
         for j in range(0,grid.getNbRow()):
             if (j == 0): 
                 res[i][j] = res[i][j]
-        
+            
+            val = res [i][j]
             res[i][j] = res[i][-j]
+            res[i][-j] = val 
+    
     grid.setOutput(res)
 
 
@@ -47,7 +50,10 @@ def axialSymetryY(grid):
             if(i == 0):
                 res[i][j] = res[i][j]
 
+            val = res [i][j]
             res[i][j] = res[-i][j]
+            res[-i][j] = val
+    
     grid.setOutput(res)
 
 
