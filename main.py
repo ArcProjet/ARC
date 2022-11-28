@@ -11,7 +11,7 @@ if __name__ == '__main__':
         grillestrain,grillestest = openJsonFile()
         grid = Grid(grillestrain[0]['input'],grillestrain[1]['output'])
         gridt = Grid(grillestest[0],grillestest[0])
-        if(grid.isSquare()):
+        if(gridt.isSquare()):
             isSquare = True
     
     #grid.output = symetryFourPart(grid)
@@ -19,6 +19,8 @@ if __name__ == '__main__':
     #grid.output = centralSymetry(grid)
     #grid.displayGrid()
 
+    #gridt.output = extendsLine(gridt,0,5)
+    #gridt.displayGrid()
     verif = "N"
 
     #On fait une boucle pour valider le résultat manuellement
