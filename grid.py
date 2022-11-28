@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 class Grid:
 
@@ -21,15 +22,22 @@ class Grid:
         return
 
     def displayGrid(self):
-        fig = plt.figure(figsize=(6, 6))
-        fig.add_subplot(1,2,1)
-        plt.title("Test Input")
-        plt.axis('off')
-        plt.imshow(self.input)
-        fig.add_subplot(1,2,2)
-        plt.title("System Output")
-        plt.axis('off')
-        plt.imshow(self.output)
+        fig, axs = plt.subplots(1,2)
+        axs[0].set_title('Test Input')
+        axs[0].axis('off')
+        axs[0].matshow(self.input, cmap='rainbow')
+        axs[1].set_title('System Output')
+        axs[1].axis('off')
+        axs[1].matshow(self.output, cmap='rainbow')
+        #fig = plt.figure(figsize=(6, 6))
+        #fig.add_subplot(1,2,1)
+        #plt.title("Test Input")
+        #plt.axis('off')
+        #plt.imshow(self.input)
+        #fig.add_subplot(1,2,2)
+        #plt.title("System Output")
+        #plt.axis('off')
+        #plt.imshow(self.output)
         plt.show()
 
     def isSquare(self):
