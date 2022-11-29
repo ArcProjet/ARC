@@ -2,16 +2,22 @@ from grid import Grid
 from primitive import *
 from random import randint
 
-#La fonction utilise des primitives de facon aléatoire avec un nombre de répétition
-def fctChoice(stage,grid):
+def fctChoice(stage):
+    tab = []
+    for _ in range(stage):
+        tab.append(randint(0,7))
+    return tab
 
-    tabFunctions = []
+def generateFctTab(nb,stage):
+    tab = []
+    for _ in range(nb):
+        tab.append(fctChoice(stage))
+    return tab
 
-    for i in range(stage):
-        n = randint(0,7)
-        tabFunctions.append(n)
-        print(n)
-        match n:
+#La fonction utilise des primitives précisé dans le tableau tabFunctions
+def applyFunctions(tabFunctions,grid):
+    for i in tabFunctions:
+        match i:
             case 0:
                 grid.setOutput(empty(grid))
             case 1:
