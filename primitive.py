@@ -130,3 +130,26 @@ def growingColor(grid, c):
                 res[o][p-1] = c
     return (res)
     
+def axialSymmetryX(grid):
+    res = grid.getInputCopy() 
+    for i in range(0,grid.getNbColumn()):
+        for j in range(0,grid.getNbRow()):
+            if (j == 0): 
+                res[i][j] = res[i][j]
+            else:
+                res[i][j] = grid.getOutput()[i][-j]
+                res[i][-j] = grid.getOutput()[i][j]           
+    
+    return (res)
+
+
+def axialSymmetryY(grid):
+    res = grid.getInputCopy() 
+    for j in range(0,grid.getNbRow()):
+        for i in range(0,grid.getNbColumn()):
+            if(i != 0):
+                res[i][j] = grid.getOutput()[-i][j]
+                res[-i][j] = grid.getOutput[i][j]
+              
+    
+    return (res)
