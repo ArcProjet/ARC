@@ -137,8 +137,8 @@ def axialSymmetryX(grid):
             if (j == 0): 
                 res[i][j] = res[i][j]
             else:
-                res[i][j] = grid.getOutput()[i][-j]
-                res[i][-j] = grid.getOutput()[i][j]           
+                res[i][j] = grid.getInput()[i][-j]
+                res[i][-j] = grid.getInput()[i][j]           
     
     return (res)
 
@@ -148,8 +148,8 @@ def axialSymmetryY(grid):
     for j in range(0,grid.getNbRow()):
         for i in range(0,grid.getNbColumn()):
             if(i != 0):
-                res[i][j] = grid.getOutput()[-i][j]
-                res[-i][j] = grid.getOutput[i][j]
+                res[i][j] = grid.getInput()[-i][j]
+                res[-i][j] = grid.getInput()[i][j]
               
     
     return (res)
