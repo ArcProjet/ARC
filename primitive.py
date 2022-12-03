@@ -134,11 +134,9 @@ def axialSymmetryX(grid):
     res = grid.getInputCopy() 
     for i in range(0,grid.getNbColumn()):
         for j in range(0,grid.getNbRow()):
-            if (j == 0): 
-                res[i][j] = res[i][j]
-            else:
+            if (j != 0): 
                 res[i][j] = grid.getInputCopy()[i][-j]
-                res[i][-j] = grid.getInputCopy()[i][j]           
+                res[i][-j] = grid.getInputCopy()[i][j]             
     
     return (res)
 
