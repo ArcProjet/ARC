@@ -14,12 +14,18 @@ class Grid:
     #Only square tab for the moment
     def getSuccess(self):
         cpt = 0
+        cptVide = 0
+        if(len(self.expected) != len(self.output) or len(self.expected[0]) != len(self.output[0])): # Temporaire avec les grilles non carré
+            return 0
         for i in range(0,len(self.output)):
             for j in range(0,len(self.output[0])):
-                if(self.expected[i][j] == self.output[i][j]):
+                if(self.expected[i][j] != 0):
+                    cptVide += 1
+                if(self.expected[i][j] == self.output[i][j]):   #and self.expected[i][j] != 0):
                     cpt += 1
         res = 100*(cpt/(len(self.output)*len(self.output[0])))
-        print("Le pourcentage de réussite est de " + str(res) + "%")
+        #res = 100*(cpt/cptVide)
+        #print("Le pourcentage de réussite est de " + str(res) + "%")
         return res
 
     def ExpectationVsreality(self):
@@ -70,7 +76,8 @@ class Grid:
         resRow = self.nbRow // 2
         resColumn = self.nbColumn // 2
         if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
+            #print('Result is not compatible with this function')
+            pass
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):
@@ -83,7 +90,8 @@ class Grid:
         resRow = self.nbRow // 2
         resColumn = self.nbColumn // 2
         if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
+            #print('Result is not compatible with this function')
+            pass
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):
@@ -96,7 +104,8 @@ class Grid:
         resRow = self.nbRow // 2
         resColumn = self.nbColumn // 2
         if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
+            #print('Result is not compatible with this function')
+            pass
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):
@@ -109,7 +118,8 @@ class Grid:
         resRow = self.nbRow // 2
         resColumn = self.nbColumn // 2
         if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
+            #print('Result is not compatible with this function')
+            pass
         for i in range(0,resRow):
             tmpRow = []
             for j in range(0,resColumn):

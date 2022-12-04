@@ -80,52 +80,52 @@ def extendColumn(grid, column, c):
 
 def extendColorUp(grid, c):
     res = grid.getInputCopy()
-    for i in range(1,grid.getNbRow()-1):
-        for j in range(1,grid.getNbColumn()-1):
+    for i in range(1,grid.getNbRow()): # for i in range(1,grid.getNbRow()-1):
+        for j in range(0,grid.getNbColumn()): # for j in range(1,grid.getNbColumn()-1):
             if(res[i][j] == c):
                 res[i-1][j] = c
     return (res)
 
 def extendColorDown(grid, c):
     res = grid.getInputCopy()
-    for i in range(grid.getNbRow()-1,1,-1):
-        for j in range(1,grid.getNbColumn()-1):
+    for i in range(grid.getNbRow()-2,0,-1): # for i in range(grid.getNbRow()-1,1,-1):
+        for j in range(0,grid.getNbColumn()): # for j in range(1,grid.getNbColumn()-1):
             if(res[i][j] == c):
                 res[i+1][j] = c
     return (res)
 
 def extendColorLeft(grid, c):
     res = grid.getInputCopy()
-    for i in range(1,grid.getNbRow()-1):
-        for j in range(1,grid.getNbColumn()-1):
+    for i in range(0,grid.getNbRow()): # for i in range(1,grid.getNbRow()-1):
+        for j in range(1,grid.getNbColumn()): # for j in range(1,grid.getNbColumn()-1):
             if(res[i][j] == c):
                 res[i][j-1] = c
     return (res)
 
 def extendColorRight(grid, c):
     res = grid.getInputCopy()
-    for i in range(1,grid.getNbRow()-1):
-        for j in range(grid.getNbColumn()-1,1,-1):
+    for i in range(0,grid.getNbRow()): # for i in range(1,grid.getNbRow()-1):
+        for j in range(grid.getNbColumn()-2,0,-1): # for j in range(grid.getNbColumn()-1,1,-1):
             if(res[i][j] == c):
                 res[i][j+1] = c
     return (res)
 
 def growingColor(grid, c):
     res = grid.getInputCopy()
-    for i in range(1,grid.getNbRow()-1):
-        for j in range(1,grid.getNbColumn()-1):
+    for i in range(1,grid.getNbRow()): # for i in range(1,grid.getNbRow()):
+        for j in range(0,grid.getNbColumn()): # for j in range(1,grid.getNbColumn()-1):
             if(res[i][j] == c):
                 res[i-1][j] = c
-    for k in range(1,grid.getNbRow()-1):
-        for l in range(grid.getNbColumn()-1,1,-1):
+    for k in range(0,grid.getNbRow()): # for k in range(1,grid.getNbRow()-1):
+        for l in range(grid.getNbColumn()-2,0,-1): # for l in range(grid.getNbColumn()-1,1,-1):
             if(res[k][l] == c):
                 res[k][l+1] = c
-    for m in range(grid.getNbRow()-1,1,-1):
-        for n in range(1,grid.getNbColumn()-1):
+    for m in range(grid.getNbRow()-2,0,-1): # for m in range(grid.getNbRow()-1,1,-1):
+        for n in range(0,grid.getNbColumn()): # for n in range(1,grid.getNbColumn()-1):
             if(res[m][n] == c):
                 res[m+1][n] = c
-    for o in range(1,grid.getNbRow()-1):
-        for p in range(1,grid.getNbColumn()-1):
+    for o in range(0,grid.getNbRow()): # for o in range(1,grid.getNbRow()-1):
+        for p in range(1,grid.getNbColumn()): # for p in range(1,grid.getNbColumn()-1):
             if(res[o][p] == c):
                 res[o][p-1] = c
     return (res)
