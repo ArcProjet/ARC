@@ -32,17 +32,10 @@ if __name__ == '__main__':
     max.getSuccess()
     max.ExpectationVsreality()
     plt.show()
-
-
     
-    
-    #grid.output = symetryFourPart(grid)
-    #grid.displayGrid()
-    #grid.output = centralSymetry(grid)
-    #grid.displayGrid()
+    #gridTrain1.output = growingColor(gridTrain1, 5)
+    #gridTrain1.displayGrid()
 
-    #gridt.output = extendsLine(gridt,0,5)
-    #gridt.displayGrid()
     #verif = "N"
 
     #On fait une boucle pour valider le résultat manuellement
