@@ -21,7 +21,8 @@ def openJsonFile():
 
     return (grillestrain,grillestest)
 
-def draw(grillestrain,grillestest):
+#grides est la grid de resultat du système
+def draw(grillestrain,grillestest,gridres):
     grilleInput = []
     grilleOutput = []
 
@@ -54,7 +55,9 @@ def draw(grillestrain,grillestest):
     plt.title("Test Output")
     plt.axis('off')
     plt.imshow(grillestest[1])
+    gridres.displayGrid()
     plt.show()
 
-grillestrain,grillestest = openJsonFile()
-draw(grillestrain,grillestest)
+#gridres = 0
+#grillestrain,grillestest = openJsonFile()
+#draw(grillestrain,grillestest,gridres)
