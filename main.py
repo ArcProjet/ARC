@@ -15,14 +15,22 @@ if __name__ == '__main__':
         if(gridTrain1.isSquare() and gridTrain2.isSquare()):
             isSquare = True
     
-    funcTab = generateFctTab(2,10)
-    applyFunctions(funcTab[0],gridTrain1)
-    applyFunctions(funcTab[1],gridTrain2)
-    gridTrain1.displayGrid()
-    gridTrain1.ExpectationVsreality()
+    index = 0
+    max = gridTest
 
-    gridTrain1.getSuccess()
+    for k in range(100):
+        gridTrain1 = Grid(grillestrain[0]['input'],grillestrain[0]['output'])
+        funcTab = generateFctTab(2,10)
+        applyFunctions(funcTab[0],gridTrain1)
+        applyFunctions(funcTab[1],gridTrain2)
 
+        if(index < gridTrain1.getSuccess()):
+            index = gridTrain1.getSuccess()
+            max = gridTrain1
+
+    max.displayGrid()
+    max.getSuccess()
+    max.ExpectationVsreality()
     plt.show()
 
 
