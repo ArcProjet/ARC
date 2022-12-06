@@ -18,7 +18,7 @@ if __name__ == '__main__':
     index = 0
     max = gridTest
 
-    for k in range(10000):
+    for k in range(100):
         gridTrain1 = Grid(grillestrain[0]['input'],grillestrain[0]['output'])
         funcTab = generateFctTab(2,10)
         applyFunctions(funcTab[0],gridTrain1)
