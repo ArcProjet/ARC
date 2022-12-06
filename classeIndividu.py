@@ -6,20 +6,20 @@ Created on Fri Nov 18 10:37:39 2022
 """
 
 from primitive import *
-from ramdom import randint
+from random import randint
 from grid import Grid
 
+toutesNosFonctions = [rotateHalf, rotateLeft, rotateRight, centralSymetry] # variables de classe partagées par toutes les instances
+taille = 20 # taille du tableau "fonctions"
+
 class Individu:
-    
-    toutesNosFonctions = [rotateHalf, rotateLeft, rotateRight, centralSymetry] # variables de classe partagées par toutes les instances
-    taille = 20 # taille du tableau "fonctions"
-    
+
     def __init__(self):
         self.score = 0
         self.fonctions = [None] * taille # création d'une nouvelle liste vide pour chaque individu
         
     def ajouterFonction(self, index):
-        self.fonctions[index] = toutesNosFonctions[random.randint(0, length(toutesNosFonctions) - 1)] # remplissage à l'index donné de la liste
+        self.fonctions[index] = toutesNosFonctions[randint(0, len(toutesNosFonctions) - 1)] # remplissage à l'index donné de la liste
         
     def genererIndividu(self):
         for i in range (0, taille): # remplissage complet de la liste
@@ -31,14 +31,14 @@ class Individu:
     def croiser2Individus(self, individu2): # on fabrique unn nouvel individu à partir de 2 individus de la génération précédente
         newIndividu = Individu()
         for i in range (0,taille//2):
-            newIndividu.fonctions[i * 2] = self.fonctions[i * 2] """ les index pairs du tableau "fonctions" associé au
-            nouvel individu seront remplis avec les index pairs du tableau associé à l'individu "self" """
-            newIndividu.fonctions[i * 2 + 1] = individu2.fonctions[i * 2 + 1] """ idem en remplaçant pair par impair """
+            newIndividu.fonctions[i * 2] = self.fonctions[i * 2] # les index pairs du tableau "fonctions" associé au
+            #nouvel individu seront remplis avec les index pairs du tableau associé à l'individu "self"
+            newIndividu.fonctions[i * 2 + 1] = individu2.fonctions[i * 2 + 1] #idem en remplaçant pair par impair """
             
-     def  muter(self): # modifie un individu de la génération précédente
-         index = random.randint(O, taille - 1)
-         self.fonctions[index] = toutesNosFonctions[random.randint(0, length(toutesNosFonctions) - 1)] """ on remplace une
-         fonction au hasard de notre individu par une fonction choisie au hasard présente dans notre base de fonctions"""
+    def muter(self): # modifie un individu de la génération précédente
+        index = randint(0, taille - 1)
+        self.fonctions[index] = toutesNosFonctions[randint(0, len(toutesNosFonctions) - 1)] # on remplace une
+        #fonction au hasard de notre individu par une fonction choisie au hasard présente dans notre base de fonctions
          
             
     

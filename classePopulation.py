@@ -4,10 +4,11 @@ Created on Sat Nov 19 10:57:28 2022
 
 @author: jeanh
 """
+from classeIndividu import *
+
+taille = 100
 
 class Population:
-    
-    taille = 100
     
     def __init__(self):
         self.individus = [None] * taille
@@ -23,6 +24,4 @@ class Population:
         for i in range (0, taille):
             self.individus[i].attribuerScore()
         varTemp = null
-        for i in range (0, taille):
-
-        
+        #for i in range (0, taille):
