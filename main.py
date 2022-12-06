@@ -9,18 +9,40 @@ if __name__ == '__main__':
     isSquare = False
     while (not isSquare):
         grillestrain,grillestest = openJsonFile()
-        grid = Grid(grillestrain[0]['input'],grillestrain[1]['output'])
-        gridt = Grid(grillestest[0],grillestest[0])
-        if(grid.isSquare()):
+        gridTrain1 = Grid(grillestrain[0]['input'],grillestrain[0]['output'])
+        gridTrain2 = Grid(grillestrain[1]['input'],grillestrain[1]['output'])
+        gridTest = Grid(grillestest[0],grillestest[1])
+        if(gridTrain1.isSquare() and gridTrain2.isSquare()):
             isSquare = True
     
-    #rotateRight(grid)
-    #grid.displayGrid()
+    index = 0
+    max = gridTest
 
-    verif = "N"
+    for k in range(10000):
+        gridTrain1 = Grid(grillestrain[0]['input'],grillestrain[0]['output'])
+        funcTab = generateFctTab(2,10)
+        applyFunctions(funcTab[0],gridTrain1)
+        applyFunctions(funcTab[1],gridTrain2)
+
+        if(index < gridTrain1.getSuccess()):
+            index = gridTrain1.getSuccess()
+            max = gridTrain1
+
+    max.displayGrid()
+    max.getSuccess()
+    max.ExpectationVsreality()
+    plt.show()
+    
+    #gridTrain1.output = growingColor(gridTrain1, 5)
+    #gridTrain1.displayGrid()
+
+    #verif = "N"
 
     #On fait une boucle pour valider le résultat manuellement
-    while (verif != "Y"):
-        fctChoice(10,gridt)
-        draw(grillestrain,grillestest,gridt)
-        verif = input("Est ce que c'est le bon résultat ? Y/N\n")
+    #while (verif != "Y"):
+        #func = fctChoice(10)
+        #applyFunctions(func,gridt)
+        #draw(grillestrain,grillestest,gridt)
+        #verif = "Y"
+        #gridt.displayGrid()
+        #verif = input("Est ce que c'est le bon résultat ? Y/N\n")
