@@ -65,13 +65,13 @@ class Population:
         for i in range(50, 100):
             populationTemp.append(Individu(1))
         
-        def evolutionPopulation(self):
-            nbCycles = 0
-            while(self.individus[0].score != 100 and nbCycles < nbCyclesMAX):        
-                self.voluerPopulation1Fois()
-                nbCycles += 1
-            self.trierPopulation()
-            return self.individus[0]
+    def evolutionPopulation(self):
+        nbCycles = 0
+        while(self.individus[0].score != 100 and nbCycles < nbCyclesMAX):        
+            self.evoluerPopulation1Fois()
+            nbCycles += 1
+        self.trierPopulation()
+        return self.individus[0]
                 
     
     
