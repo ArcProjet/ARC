@@ -1,11 +1,10 @@
-from grid import Grid
 from primitive import *
 from random import randint
 
 def fctChoice(stage):
     tab = []
     for _ in range(stage):
-        tab.append(randint(0,13))
+        tab.append(randint(0,14))
     return tab
 
 def generateFctTab(nb,stage):
@@ -19,30 +18,33 @@ def applyFunctions(tabFunctions,grid):
     for i in tabFunctions:
         match i:
             case 0:
-                grid.setOutput(empty(grid))
+                grid = (empty(grid))
             case 1:
-                grid.setOutput(completed(grid,randint(0,9)))
+                grid = (completed(grid,randint(0,9)))
             case 2:
-                grid.setOutput(rotateHalf(grid))
+                grid = (rotateHalf(grid))
             case 3:
-                grid.setOutput(rotateLeft(grid))
+                grid = (rotateLeft(grid))
             case 4:
-                grid.setOutput(rotateRight(grid))
+                grid = (rotateRight(grid))
             case 5:
-                grid.setOutput(centralSymetry(grid))
+                grid = (centralSymetry(grid))
             case 6:
-                grid.setOutput(symetryFourPart(grid))
+                grid = (empty(grid))
             case 7:
-                grid.setOutput(extendLine(grid,randint(0,grid.nbRow-1),randint(0,9)))
+                grid = (extendLine(grid,randint(0,len(grid)-1),randint(0,9)))
             case 8:
-                grid.setOutput(extendColumn(grid,randint(0,grid.nbColumn-1),randint(0,9)))
+                grid = (extendColumn(grid,randint(0,len(grid[0])-1),randint(0,9)))
             case 9:
-                grid.setOutput(extendColorUp(grid,randint(0,9)))
+                grid = (extendColorUp(grid,randint(0,9)))
             case 10:
-                grid.setOutput(extendColorDown(grid,randint(0,9)))
+                grid = (extendColorDown(grid,randint(0,9)))
             case 11:
-                grid.setOutput(extendColorLeft(grid,randint(0,9)))
+                grid = (extendColorLeft(grid,randint(0,9)))
             case 12:
-                grid.setOutput(extendColorRight(grid,randint(0,9)))
+                grid = (extendColorRight(grid,randint(0,9)))
             case 13:
-                grid.setOutput(growingColor(grid,randint(0,9)))
+                grid = (growingColor(grid,randint(0,9)))
+            case 14:
+                grid = (commonElement(grid,grid))
+    return grid

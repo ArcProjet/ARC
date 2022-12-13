@@ -1,48 +1,32 @@
 from primitive import *
 from JsonLoader import *
 from gestion import *
-from grid import Grid
+
+def displayGrid(gridInput,gridOutput,title1,title2):
+    fig, axs = plt.subplots(1,2)
+    axs[0].set_title(title1)
+    axs[0].axis('off')
+    axs[0].matshow(gridInput, cmap='rainbow')
+    axs[1].set_title(title2)
+    axs[1].axis('off')
+    axs[1].matshow(gridOutput, cmap='rainbow')
 
 if __name__ == '__main__':
 
-    #On ne charge que des grilles carrées pour le moment
-    isSquare = False
-    while (not isSquare):
-        grillestrain,grillestest = openJsonFile()
-        gridTrain1 = Grid(grillestrain[0]['input'],grillestrain[0]['output'])
-        gridTrain2 = Grid(grillestrain[1]['input'],grillestrain[1]['output'])
-        gridTest = Grid(grillestest[0],grillestest[1])
-        if(gridTrain1.isSquare() and gridTrain2.isSquare()):
-            isSquare = True
+    grillestrain,gridEvaluation = openJsonFile()
+
+    gridEntree1, gridExpected1 = grillestrain[0]['input'],grillestrain[0]['output']
+    gridEntree2, gridExpected2 = grillestrain[1]['input'],grillestrain[1]['output']
+    gridEvaluationEntree, gridEvaluationExpected = gridEvaluation[0],gridEvaluation[1]
+
+    #Pour générer des vecteurs de primitives
+    #res = generateFctTab(1,1)
+    #grilleSortie = applyFunctions(res[0],gridEntree1.copy())
+
+    #Pour tester sa primitive il faut remplacer le empty par le nom de sa fonction
+    grilleSortie = empty(gridEntree1)
+
+    displayGrid(gridEntree1,grilleSortie,"Grille Entrée", "Grille obtenu après primitive")
+    displayGrid(grilleSortie,gridExpected1,"Grille obtenu après primitive", "Grille qu'on est censé obtenir")
     
-    index = 0
-    max = gridTest
-
-    for k in range(10000):
-        gridTrain1 = Grid(grillestrain[0]['input'],grillestrain[0]['output'])
-        funcTab = generateFctTab(2,10)
-        applyFunctions(funcTab[0],gridTrain1)
-        applyFunctions(funcTab[1],gridTrain2)
-
-        if(index < gridTrain1.getSuccess()):
-            index = gridTrain1.getSuccess()
-            max = gridTrain1
-
-    max.displayGrid()
-    max.getSuccess()
-    max.ExpectationVsreality()
     plt.show()
-    
-    #gridTrain1.output = growingColor(gridTrain1, 5)
-    #gridTrain1.displayGrid()
-
-    #verif = "N"
-
-    #On fait une boucle pour valider le résultat manuellement
-    #while (verif != "Y"):
-        #func = fctChoice(10)
-        #applyFunctions(func,gridt)
-        #draw(grillestrain,grillestest,gridt)
-        #verif = "Y"
-        #gridt.displayGrid()
-        #verif = input("Est ce que c'est le bon résultat ? Y/N\n")
