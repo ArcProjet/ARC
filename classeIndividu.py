@@ -17,16 +17,21 @@ class Individu:
     def __init__(self):
         self.score = 0
         self.fonctions = [None] * taille # création d'une nouvelle liste vide pour chaque individu
+        self.grille = null
+        self.population # bien utile pour accéder à l'image espérée utilisée dans "attribuerScore"
         
-    def ajouterFonction(self, index):
-        self.fonctions[index] = toutesNosFonctions[randint(0, len(toutesNosFonctions) - 1)] # remplissage à l'index donné de la liste
-        
-    def genererIndividu(self):
+    def genererIndividu(self): # peut être le mettre sous la forme d'un constructeur
         for i in range (0, taille): # remplissage complet de la liste
             self.ajouterFonction(i)
-            
+        self.genererGrille()
+        self.attribuerScore()
+        
+    def ajouterFonction(self, index):
+        self.fonctions[index] = toutesNosFonctions[randint(0, len(toutesNosFonctions) - 1)] # remplissage à l'index donné de la liste   
+          
     def attribuerScore(self):
-        self.score = self.input.compare(self.ouput) # compare est une méthode de la classe Grid
+        # compare l'image générée par l'individu à l'image attendue
+        self.score = self.grille.comparer(self.ImageEsperee) # compare est une méthode de la classe Grid
         
     def croiser2Individus(self, individu2): # on fabrique unn nouvel individu à partir de 2 individus de la génération précédente
         newIndividu = Individu()
@@ -39,9 +44,9 @@ class Individu:
         index = randint(0, taille - 1)
         self.fonctions[index] = toutesNosFonctions[randint(0, len(toutesNosFonctions) - 1)] # on remplace une
         #fonction au hasard de notre individu par une fonction choisie au hasard présente dans notre base de fonctions
-         
-            
-    
+        
+        
+        
             
             
         
