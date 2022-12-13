@@ -1,5 +1,3 @@
-from listeFunctions import *
-
 def empty(grid):
     return grid.copy()
 
