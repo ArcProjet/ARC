@@ -5,6 +5,9 @@ Created on Tue Dec 13 11:29:33 2022
 @author: jeanh
 """
 
+from classeIndividu import *
+from classePopulation import *
+
 class Grille :
     
     def __init__(self, grilleEntree):

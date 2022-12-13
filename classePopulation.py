@@ -6,6 +6,7 @@ Created on Sat Nov 19 10:57:28 2022
 """
 from classeIndividu import *
 
+
 taille = 100
 
 class Population:
@@ -32,7 +33,7 @@ class Population:
         dicoIndividusTemp = sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
         this.individus = dicoIndividusTemp.keys()
     
-    def evoluerPopulation(self) # y a t il une fonction qui permet de trier une liste à partir d'un attribut des éléments de cette même liste
+    def evoluerPopulation(self): # y a t il une fonction qui permet de trier une liste à partir d'un attribut des éléments de cette même liste
         # 1 On conserve les 50 meilleurs individus pour générer la population suivante
         # 2 les 10 premiers sont simplement mutés (1 fois)
         # 3 40 suivants sont créer par croisements entre les 50 premiers
@@ -40,20 +41,20 @@ class Population:
         populationTemp = []
         #commentaire 2
         for i in range (0, 10):
-            individus[i].muter()
-            populationTemp.append(individus[i])
+            self.individus[i].muter()
+            populationTemp.append(self.individus[i])
         for i in range(10, 20):
-            individus[i].croiser2Individus(individus[0])
-            populationTemp.append(individus[i])
+            self.individus[i].croiser2Individus(self.individus[0])
+            populationTemp.append(self.individus[i])
         for i in range(20, 30):
-            individus[i].croiser2Individus(individus[1])
-            populationTemp.append(individus[i])
+            self.individus[i].croiser2Individus(self.individus[1])
+            populationTemp.append(self.individus[i])
         for i in range(30, 40):
-            individus[i].croiser2Individus(individus[2])
-            populationTemp.append(individus[i])
+            self.individus[i].croiser2Individus(self.individus[2])
+            populationTemp.append(self.individus[i])
         for i in range(40, 50):
-            individus[i].croiser2Individus(individus[3])
-            populationTemp.append(individus[i])
+            self.individus[i].croiser2Individus(self.individus[3])
+            populationTemp.append(self.individus[i])
         for i in range(50, 100):
             populationTemp.append(Individu().genererIndividu())
             
