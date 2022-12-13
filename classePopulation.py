@@ -8,6 +8,7 @@ from classeIndividu import *
 
 
 taille = 100
+nbCyclesMAX = 1000
 
 class Population:
     
@@ -16,9 +17,9 @@ class Population:
         self.imageEsperee = im
         
     def ajouterIndividu(self, index):
-        self.individus[index] = genererIndividu()    
+        self.individus[index] = Individu(1)    
         
-    def genererPopulation():
+    def genererPopulation(self):
         for i in range (0, taille): # remplissage complet de la liste
             self.ajouterIndividu(i)
             
@@ -31,18 +32,23 @@ class Population:
         for i in self.individus:
             dicoIndividusTemp[i] = i.score
         dicoIndividusTemp = sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
-        this.individus = dicoIndividusTemp.keys()
+        self.individus = dicoIndividusTemp.keys()
     
-    def evoluerPopulation(self): # y a t il une fonction qui permet de trier une liste à partir d'un attribut des éléments de cette même liste
+    def evoluerPopulation1Fois(self): # y a t il une fonction qui permet de trier une liste à partir d'un attribut des éléments de cette même liste
+        
+        # on suppose que la population de départ est triée
+        
         # 1 On conserve les 50 meilleurs individus pour générer la population suivante
         # 2 les 10 premiers sont simplement mutés (1 fois)
         # 3 40 suivants sont créer par croisements entre les 50 premiers
         # 4 les 50 restants sont générés aléatoirement
         populationTemp = []
-        #commentaire 2
+        self.trierPopulation()
+        # commentaire 2
         for i in range (0, 10):
             self.individus[i].muter()
             populationTemp.append(self.individus[i])
+        # commentaire 3
         for i in range(10, 20):
             self.individus[i].croiser2Individus(self.individus[0])
             populationTemp.append(self.individus[i])
@@ -55,9 +61,18 @@ class Population:
         for i in range(40, 50):
             self.individus[i].croiser2Individus(self.individus[3])
             populationTemp.append(self.individus[i])
+        # commentaire 4
         for i in range(50, 100):
-            populationTemp.append(Individu().genererIndividu())
-            
+            populationTemp.append(Individu(1))
+        
+        def evolutionPopulation(self):
+            nbCycles = 0
+            while(self.individus[0].score != 100 && nbCycles < nbCyclesMAX):        
+                evoluerPopulation1Fois()
+                nbCycles += 1
+            self.trierPopulation()
+            return self.individus[0]
+                
     
     
     

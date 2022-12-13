@@ -14,17 +14,19 @@ taille = 20 # taille du tableau "fonctions"
 
 class Individu:
 
-    def __init__(self):
-        self.score = 0
-        self.fonctions = [None] * taille # création d'une nouvelle liste vide pour chaque individu
-        self.grille = null
-        self.population # bien utile pour accéder à l'image espérée utilisée dans "attribuerScore"
+    def __init__(self, numeroConstructeur):
         
-    def genererIndividu(self): # peut être le mettre sous la forme d'un constructeur
-        for i in range (0, taille): # remplissage complet de la liste
-            self.ajouterFonction(i)
-        self.genererGrille()
-        self.attribuerScore()
+        if(numeroConstructeur == 0):
+            self.score = 0
+            self.fonctions = [None] * taille # création d'une nouvelle liste vide pour chaque individu
+            self.grille = None # visiblement null n'existe pas en python
+            self.population # bien utile pour accéder à l'image espérée utilisée dans "attribuerScore"       
+    # def genererIndividu(self): # peut être le mettre sous la forme d'un constructeur
+        else:
+            for i in range (0, taille): # remplissage complet de la liste
+                self.ajouterFonction(i)
+            self.genererGrille()
+            self.attribuerScore()
         
     def ajouterFonction(self, index):
         self.fonctions[index] = toutesNosFonctions[randint(0, len(toutesNosFonctions) - 1)] # remplissage à l'index donné de la liste   
