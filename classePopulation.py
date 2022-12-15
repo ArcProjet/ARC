@@ -12,12 +12,13 @@ nbCyclesMAX = 1000
 
 class Population:
     
-    def __init__(self, im):
+    def __init__(self, im,dep):
         self.individus = [None] * taille
         self.imageEsperee = im
+        self.imageDepart = dep
         
     def ajouterIndividu(self, index):
-        self.individus[index] = Individu(1)    
+        self.individus[index] = Individu(1,self)
         
     def genererPopulation(self):
         for i in range (0, taille): # remplissage complet de la liste
@@ -31,8 +32,8 @@ class Population:
         dicoIndividusTemp = {}
         for i in self.individus:
             dicoIndividusTemp[i] = i.score
-        dicoIndividusTemp = sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
-        self.individus = dicoIndividusTemp.keys()
+        sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
+        self.individus = list(dicoIndividusTemp.keys())
     
     def evoluerPopulation1Fois(self): # y a t il une fonction qui permet de trier une liste à partir d'un attribut des éléments de cette même liste
         
@@ -63,7 +64,7 @@ class Population:
             populationTemp.append(self.individus[i])
         # commentaire 4
         for i in range(50, 100):
-            populationTemp.append(Individu(1))
+            populationTemp.append(Individu(1,self))
         
     def evolutionPopulation(self):
         nbCycles = 0
@@ -73,6 +74,9 @@ class Population:
         self.trierPopulation()
         return self.individus[0]
                 
+    def modifierGrille(self):
+        for i in self.individus:
+            i.grille.modifierGrille(i.fonctions)
     
     
     

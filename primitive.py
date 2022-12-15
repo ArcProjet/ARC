@@ -12,32 +12,37 @@ def completed(grid, c):
     return (res)
 
 def rotateHalf(grid):
-    return (grid.getInputCopy()[::-1])
+    if(len(grid) == len(grid[0])):
+        return (grid.getInputCopy()[::-1])
+    return grid.getInputCopy()
 
 def rotateLeft(grid):
     res = grid.getInputCopy()
-    for i in range(0,grid.getNbRow()):
-        cpt = 0
-        for j in range(0,grid.getNbColumn()):
-            res[i][j] = grid.getOutput()[cpt][grid.getNbColumn()-i-1]
-            cpt += 1
+    if(len(grid) == len(grid[0])):
+        for i in range(0,grid.getNbRow()):
+            cpt = 0
+            for j in range(0,grid.getNbColumn()):
+                res[i][j] = grid.getOutput()[cpt][grid.getNbColumn()-i-1]
+                cpt += 1
     return (res)
 
 
 def rotateRight(grid):
     res = grid.getInputCopy()
-    for i in range(0,grid.getNbRow()):
-        cpt = grid.getNbRow() - 1
-        for j in range(0,grid.getNbColumn()):
-            res[i][j] = grid.getOutput()[cpt][i]
-            cpt -= 1
+    if(len(grid) == len(grid[0])):
+        for i in range(0,grid.getNbRow()):
+            cpt = grid.getNbRow() - 1
+            for j in range(0,grid.getNbColumn()):
+                res[i][j] = grid.getOutput()[cpt][i]
+                cpt -= 1
     return (res)
 
 def centralSymetry(grid):
     res = grid.getInputCopy()
-    for i in range(0,grid.getNbRow()):
-        for j in range(0,grid.getNbColumn()):
-            res[i][j] = grid.getOutput()[j][i]
+    if(len(grid) == len(grid[0])):
+        for i in range(0,grid.getNbRow()):
+            for j in range(0,grid.getNbColumn()):
+                res[i][j] = grid.getOutput()[j][i]
     return (res)
 
 def symetryFourPart(grid):

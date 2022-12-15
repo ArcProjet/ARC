@@ -2,8 +2,26 @@ from primitive import *
 from JsonLoader import *
 from gestion import *
 from grid import Grid
+from classeGrille import Grille
+from classeIndividu import Individu
+from classePopulation import Population
 
 if __name__ == '__main__':
+    grillestrain,grillestest = openJsonFile()
+    gridTrain1 = grillestrain[0]['input'],grillestrain[0]['output']
+    gridTrain2 = grillestrain[1]['input'],grillestrain[1]['output']
+    p = Population(gridTrain1[1],gridTrain1[0])
+    p.genererPopulation()
+    p.trierPopulation()
+    p.modifierGrille()
+    
+ #   ttt = Grid(p.imageDepart,p.imageEsperee)
+ #   ttt.output = p.individus[1].grille.data
+ #   ttt.displayGrid()
+ #   ttt.ExpectationVsreality()
+ #   plt.show()
+
+if __name__ == '__min__':
 
     #On ne charge que des grilles carrées pour le moment
     isSquare = False
