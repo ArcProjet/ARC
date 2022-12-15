@@ -11,13 +11,15 @@ from classePopulation import *
 class Grille:
     
     def __init__(self, grilleEntree):
-        self.input = grilleEntree
         self.data = grilleEntree
                
-    def modifierGrille(self,sequence):
-        self.data =  self.input   
+    def modifierGrille(self,grilleEntree,sequence):
+        self.data = grilleEntree
         for fonction in sequence:
             self.data = fonction(self.data)
+        #self.data = grilleEntree
+        #for fonction in sequence:
+        #    self.data = fonction(self.data)
     
     def comparer(self, grilleEsperee):
         cpt = 0

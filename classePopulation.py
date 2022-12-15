@@ -12,13 +12,13 @@ nbCyclesMAX = 1000
 
 class Population:
     
-    def __init__(self, im,dep):
+    def __init__(self,im,dep):
         self.individus = [None] * taille
         self.imageEsperee = im
         self.imageDepart = dep
         
     def ajouterIndividu(self, index):
-        self.individus[index] = Individu(1,self)
+        self.individus[index] = Individu(1,self.imageDepart,self.imageEsperee)
         
     def genererPopulation(self):
         for i in range (0, taille): # remplissage complet de la liste
@@ -64,10 +64,12 @@ class Population:
             populationTemp.append(self.individus[i])
         # commentaire 4
         for i in range(50, 100):
-            populationTemp.append(Individu(1,self))
+            populationTemp.append(Individu(1,self.imageDepart,self.imageEsperee))
+        self.modifierGrille()
         
     def evolutionPopulation(self):
         nbCycles = 0
+        self.modifierGrille()
         while(self.individus[0].score != 100 and nbCycles < nbCyclesMAX):        
             self.evoluerPopulation1Fois()
             nbCycles += 1
@@ -75,8 +77,8 @@ class Population:
         return self.individus[0]
                 
     def modifierGrille(self):
-        for i in self.individus:
-            i.grille.modifierGrille(i.fonctions)
+        for individu in self.individus:
+            individu.grille.modifierGrille(self.imageDepart,individu.fonctions)
     
     
     

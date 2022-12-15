@@ -31,7 +31,7 @@ def applyFunctions(tabFunctions,grid):
             case 5:
                 grid.setOutput(centralSymetry(grid))
             case 6:
-                grid.setOutput(symetryFourPart(grid))
+                grid.setOutput(empty(grid))
             case 7:
                 grid.setOutput(extendLine(grid,randint(0,grid.nbRow-1),randint(0,9)))
             case 8:
