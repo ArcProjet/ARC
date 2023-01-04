@@ -8,7 +8,7 @@ from classeIndividu import *
 
 
 taille = 100
-nbCyclesMAX = 1000
+nbCyclesMAX = 100
 
 class Population:
     
