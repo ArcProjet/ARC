@@ -10,7 +10,7 @@ from random import randint
 import classeGrille
 from JsonLoader import *
 
-toutesNosFonctions = [empty,rotateHalf, rotateLeft, rotateRight, centralSymetry, axialSymmetryX,axialSymmetryY] # variables de classe partagées par toutes les instances
+toutesNosFonctions = [empty,rotateHalf, rotateLeft, rotateRight, centralSymetry,symetryFourPart,extendColorDown,extendColorLeft,extendColorRight,extendColorUp,growingColor] # variables de classe partagées par toutes les instances
 taille = 20 # taille du tableau "fonctions",
 
 class Individu:

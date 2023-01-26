@@ -7,6 +7,7 @@ Created on Tue Dec 13 11:29:33 2022
 
 from classeIndividu import *
 from classePopulation import *
+from math import *
 
 class Grille:
     
@@ -16,7 +17,7 @@ class Grille:
     def modifierGrille(self,grilleEntree,sequence):
         self.data = grilleEntree
         for fonction in sequence:
-            self.data = fonction(self.data)
+            self.data = fonction(self.data,randint(0,9))
         #self.data = grilleEntree
         #for fonction in sequence:
         #    self.data = fonction(self.data)
