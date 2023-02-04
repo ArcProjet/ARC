@@ -18,9 +18,9 @@ def applyFunctions(tabFunctions,grid):
     for i in tabFunctions:
         match i:
             case 0:
-                grid = (empty(grid))
+                grid = (gridCopy(grid))
             case 1:
-                grid = (completed(grid,randint(0,9)))
+                grid = (completed(grid))
             case 2:
                 grid = (rotateHalf(grid))
             case 3:
@@ -28,23 +28,32 @@ def applyFunctions(tabFunctions,grid):
             case 4:
                 grid = (rotateRight(grid))
             case 5:
-                grid = (centralSymetry(grid))
+                grid = (extendLine(grid))
             case 6:
-                grid = (empty(grid))
+                grid = (extendColumn(grid))
             case 7:
-                grid = (extendLine(grid,randint(0,len(grid)-1),randint(0,9)))
+                grid = (extendColorUp(grid))
             case 8:
-                grid = (extendColumn(grid,randint(0,len(grid[0])-1),randint(0,9)))
+                grid = (extendColorDown(grid))
             case 9:
-                grid = (extendColorUp(grid,randint(0,9)))
+                grid = (extendColorLeft(grid))
             case 10:
-                grid = (extendColorDown(grid,randint(0,9)))
+                grid = (extendColorRight(grid))
             case 11:
-                grid = (extendColorLeft(grid,randint(0,9)))
+                grid = (growingColor(grid))
             case 12:
-                grid = (extendColorRight(grid,randint(0,9)))
+                grid = (axialSymmetryX(grid))
             case 13:
-                grid = (growingColor(grid,randint(0,9)))
+                grid = (axialSymmetryY(grid))
             case 14:
-                grid = (commonElement(grid,grid))
+                grid = (copyHalfX(grid))
+            case 15:
+                grid = (copyHalfY(grid))
+            # case 16:
+            #    grid = (symetryFourPart(grid))
+            # case 17:
+            #    grid = (centralSymetry(grid))
+            # case 18:
+            #    grid = (commonElement(grid, grid))
+
     return grid
