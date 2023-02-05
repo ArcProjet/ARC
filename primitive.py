@@ -158,6 +158,103 @@ def copyHalfY(grid):
             res[i][j] = grid[i][len(grid[0])-j-1]
     return res
 
+
+def xHalf(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range(int(len(grid)/2))]
+    for i in range(0, int(len(grid)/2)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def yHalf(grid):
+    res = [[0 for _ in range(int(len(grid[0])/2))] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, int(len(grid[i])/2)):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def changeAColor(grid):
+    res = gridCopy(grid)
+    c = res[randint(0, len(res) - 1)][randint(0, len(res[0]) - 1)]
+    newC = randint(0,9)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == c):
+                res[i][j] = newC
+    return res
+
+#AU FINAL, TRES SIMILAIRE A CHANGECOLOR...
+#AFFICHAGE SOUVENT BUGUER
+def completeColor(grid):
+    res = gridCopy(grid)
+    newC = randint(0, 9)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if (res[i][j] == 0):
+                res[i][j] = newC
+    return res
+
+
+def doubleRow(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range((len(grid))*2)]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[len(grid)+i][j] = grid[i][j]
+    return res
+
+
+def tripleRow(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range((len(grid))*3)]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[len(grid)+i][j] = grid[i][j]
+            res[(len(grid)*2)+i][j] = grid[i][j]
+    return res
+
+
+def doubleColumn(grid):
+    res = [[0 for _ in range((len(grid[0]))*2)] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[i][len(grid[0])+j] = grid[i][j]
+    return res
+
+
+def tripleColumn(grid):
+    res = [[0 for _ in range((len(grid[0]))*3)] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[i][len(grid[0])+j] = grid[i][j]
+            res[i][(len(grid[0])*2)+j] = grid[i][j]
+    return res
+
+
+def doubleSymetryRow(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range((len(grid))*2)]
+    sym = axialSymmetryX(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[len(grid)+i][j] = sym[i][j]
+    return res
+
+
+def doubleSymetryColumn(grid):
+    res = [[0 for _ in range((len(grid[0]))*2)] for _ in range(len(grid))]
+    sym = axialSymmetryY(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[i][len(grid[0])+j] = sym[i][j]
+    return res
+
+
 # EST CE QU'ON GARDE ? ON A PLUS SIMPLE JE PENSE MAINTENANT ?
 # LES 2 COPY HALF FONT LE JOB JE PENSE...
 # def symetryFourPart(grid):

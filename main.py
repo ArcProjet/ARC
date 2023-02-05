@@ -23,7 +23,7 @@ if __name__ == '__main__':
     #grilleSortie = applyFunctions(res[0],gridEntree1.copy())
 
     #Pour tester sa primitive il faut remplacer le empty par le nom de sa fonction
-    grilleSortie = copyHalfX(gridEntree1)
+    grilleSortie = doubleSymetryColumn(gridEntree1)
 
     displayGrid(gridEntree1,grilleSortie,"Grille Entrée", "Grille obtenu après primitive")
     #displayGrid(grilleSortie,gridExpected1,"Grille obtenu après primitive", "Grille qu'on est censé obtenir")

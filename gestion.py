@@ -49,11 +49,27 @@ def applyFunctions(tabFunctions,grid):
                 grid = (copyHalfX(grid))
             case 15:
                 grid = (copyHalfY(grid))
-            # case 16:
+            case 16:
+                grid = (xHalf(grid))
+            case 17:
+                grid = (yHalf(grid))
+            case 18:
+                grid = (doubleRow(grid))
+            case 19:
+                grid = (tripleRow(grid))
+            case 20:
+                grid = (doubleColumn(grid))
+            case 21:
+                grid = (tripleColumn(grid))
+            case 22:
+                grid = (doubleSymetryRow(grid))
+            case 23:
+                grid = (doubleSymetryColumn(grid))
+            # case 24:
             #    grid = (symetryFourPart(grid))
-            # case 17:
+            # case 25:
             #    grid = (centralSymetry(grid))
-            # case 18:
+            # case 26:
             #    grid = (commonElement(grid, grid))
 
     return grid
