@@ -1,4 +1,8 @@
 from random import randint
+import math 
+import numpy as np
+import cv2
+
 
 #Copie proprement les grilles
 def gridCopy(grid):
@@ -298,3 +302,60 @@ def doubleSymetryColumn(grid):
 #                 res[i][j] = 0
 #             #res[i][j] = grid[i][j] - grid2[i][j]
 #     return res
+
+
+
+'''------------------------------------------------------------------------------------------------------------------------------------------'''
+
+'''A REVOIR LA FONCTION INVERSION A CAUSE DES COULEURS DES GRILLES (est ce que c'est 9 - .... ou 1 - ....) '''
+
+
+def inversion(grid):
+    n = len(grid)
+    inverted_grid = [[9 - grid[i][j] for j in range(n)] for i in range(n)]
+    return inverted_grid
+
+
+
+def rotational_symmetry(grid, angle):
+    n = len(grid)
+    new_grid = [[0 for j in range(n)] for i in range(n)]
+    center = (n-1) / 2
+    radians = math.radians(angle)
+    for i in range(n):
+        for j in range(n):
+            x = (i - center) * math.cos(radians) + (j - center) * math.sin(radians)
+            y = -(i - center) * math.sin(radians) + (j - center) * math.cos(radians)
+            x = int(round(x + center))
+            y = int(round(y + center))
+            if x >= 0 and x < n and y >= 0 and y < n:
+                new_grid[x][y] = grid[i][j]
+    return new_grid
+
+def rescale (grid, dimension):
+    n = len(grid)
+    new_grid = [[0 for j in range(dimension)] for i in range(dimension)]
+    for i in range(dimension): 
+        for j in range(dimension):
+            new_grid[i][j] = grid [i][j]
+
+    return new_grid 
+
+def mirrorGrid (grid, angle):
+    new_grid =  rotational_symmetry(grid, 180 + angle)
+    for i in range (len(grid)//2):
+        for j in range (len(grid)//2):
+            new_grid [i][j] = grid [i][j]
+
+    return new_grid 
+
+
+'''En cours : pour le moment pas trop d'idées là dessus '''
+
+'''
+def removeNoiseFromGrid(grid):
+    grid = np.array(grid)
+    grid = cv2.medianBlur(grid, len(grid))  # en supposant bien sur que la matrice est carrée 
+    return grid
+
+'''
