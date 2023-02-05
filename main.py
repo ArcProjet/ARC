@@ -19,13 +19,13 @@ if __name__ == '__main__':
     gridEvaluationEntree, gridEvaluationExpected = gridEvaluation[0],gridEvaluation[1]
 
     #Pour générer des vecteurs de primitives
-    #res = generateFctTab(1,1)
-    #grilleSortie = applyFunctions(res[0],gridEntree1.copy())
+    res = generateFctTab(1,1)
+    grilleSortie = applyFunctions(res[0],gridEntree1)
 
     #Pour tester sa primitive il faut remplacer le empty par le nom de sa fonction
-    grilleSortie = inversion(gridEntree1)
+    #grilleSortie = inversion(gridEntree1)
 
     displayGrid(gridEntree1,grilleSortie,"Grille Entrée", "Grille obtenu après primitive")
-    #displayGrid(grilleSortie,gridExpected1,"Grille obtenu après primitive", "Grille qu'on est censé obtenir")
+    displayGrid(grilleSortie,gridExpected1,"Grille obtenu après primitive", "Grille qu'on est censé obtenir")
     
     plt.show()

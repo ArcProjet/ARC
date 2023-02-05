@@ -312,7 +312,7 @@ def doubleSymetryColumn(grid):
 
 def inversion(grid):
     n = len(grid)
-    inverted_grid = [[9 - grid[i][j] for j in range(n)] for i in range(n)]
+    inverted_grid = [[9 - grid[i][j] for j in range(len(grid[i]))] for i in range(n)]
     return inverted_grid
 
 
