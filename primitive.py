@@ -304,12 +304,6 @@ def doubleSymetryColumn(grid):
 #     return res
 
 
-
-'''------------------------------------------------------------------------------------------------------------------------------------------'''
-
-'''A REVOIR LA FONCTION INVERSION A CAUSE DES COULEURS DES GRILLES (est ce que c'est 9 - .... ou 1 - ....) '''
-
-
 def inversion(grid):
     n = len(grid)
     inverted_grid = [[9 - grid[i][j] for j in range(n)] for i in range(n)]
@@ -350,12 +344,56 @@ def mirrorGrid (grid, angle):
     return new_grid 
 
 
-'''En cours : pour le moment pas trop d'idées là dessus '''
-
-'''
-def removeNoiseFromGrid(grid):
+def removeNoiseFromGrid(grid, seuil=9): 
     grid = np.array(grid)
-    grid = cv2.medianBlur(grid, len(grid))  # en supposant bien sur que la matrice est carrée 
+    rows, cols = grid.shape
+    for i in range(rows):
+        for j in range(cols):
+            if grid[i][j] < seuil:
+                grid[i][j] = 0
     return grid
 
-'''
+
+'''---------------------------------------------------------------------------------------------------------------------------------------------'''
+
+'''Petit problème je ne comprend pas pourquoi parfois ça me met des index out of bound (pour les 4 fonctions) alors que tout est bien configuré ?'''
+
+def translationVerticaleEnHaut(grid, nbCases=0): 
+    grille = gridCopy(grid)
+    if(len(grid)>nbCases):
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                grille[(i + nbCases) % len(grid)][j] = grid[i][j]
+    return grille
+
+
+def translationHorizontaleADroite(grid, nbCases=0):
+    grille = gridCopy(grid)
+    if(len(grid)>nbCases):
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                nouveau_j = (j + nbCases) % len(grid)
+                grille[i][nouveau_j] = grid[i][j]
+    return grille
+
+
+def translationVerticaleEnBas(grid, nbCases=0): 
+    grille = gridCopy(grid)
+    if (len(grid)>nbCases):
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                grille[(i - nbCases) % len(grid)][j] = grid[i][j]
+    return grille
+
+def translationHorizontaleAGauche(grid, nbCases=0):
+    grille = gridCopy(grid)
+    if (len(grid)>nbCases):
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                nouveau_j = (j - nbCases) % len(grid)
+                grille[i][nouveau_j] = grid[i][j]
+    return grille
+
+
+'''---------------------------------------------------------------------------------------------------------------------------------------------'''
+
