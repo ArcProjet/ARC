@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
 class Grid:
 
@@ -50,9 +49,6 @@ class Grid:
         #plt.imshow(self.output)
         #plt.show()
 
-    def isSquare(self):
-        return ((self.nbRow == self.nbColumn))# and (len(self.output) == len(self.output[0])))
-
     def getInputCopy(self):
         res = []
         for i in range(0,self.nbRow):
@@ -62,73 +58,12 @@ class Grid:
             res.append(tmp)
         return res
     
-    def getGridCopy(self):
-        return Grid(self.input,self.output)
-
-    def getCornerUpLeft(self):
-        res = []
-        resRow = self.nbRow // 2
-        resColumn = self.nbColumn // 2
-        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
-        for i in range(0,resRow):
-            tmpRow = []
-            for j in range(0,resColumn):
-                tmpRow.append(self.output[i][j])
-            res.append(tmpRow)
-        return(res)
-
-    def getCornerUpRight(self):
-        res = []
-        resRow = self.nbRow // 2
-        resColumn = self.nbColumn // 2
-        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
-        for i in range(0,resRow):
-            tmpRow = []
-            for j in range(0,resColumn):
-                tmpRow.append(self.output[i][j+resColumn])
-            res.append(tmpRow)
-        return(res)
-
-    def getCornerDownLeft(self):
-        res = []
-        resRow = self.nbRow // 2
-        resColumn = self.nbColumn // 2
-        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
-        for i in range(0,resRow):
-            tmpRow = []
-            for j in range(0,resColumn):
-                tmpRow.append(self.output[i+resRow][j+resColumn])
-            res.append(tmpRow)
-        return(res)
-
-    def getCornerDownRight(self):
-        res = []
-        resRow = self.nbRow // 2
-        resColumn = self.nbColumn // 2
-        if(self.nbRow %2 != 0 and self.nbColumn%2 != 0):
-            print('Result is not compatible with this function')
-        for i in range(0,resRow):
-            tmpRow = []
-            for j in range(0,resColumn):
-                tmpRow.append(self.output[i+resRow][j])
-            res.append(tmpRow)
-        return(res)
-    
     #Getters
     def getInput(self):
         return self.input
     
     def getOutput(self):
         return self.output
-
-    def getNbRow(self):
-        return self.nbRow
-    
-    def getNbColumn(self):
-        return self.nbColumn
 
     #Setters
     def setOutput(self,tab):

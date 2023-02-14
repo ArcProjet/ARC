@@ -54,22 +54,44 @@ def applyFunctions(tabFunctions,grid):
             case 17:
                 grid = (yHalf(grid))
             case 18:
-                grid = (doubleRow(grid))
+                grid = (changeAColor(grid))
             case 19:
-                grid = (tripleRow(grid))
+                grid = (completeColor(grid))
             case 20:
-                grid = (doubleColumn(grid))
+                grid = (doubleRow(grid))
             case 21:
-                grid = (tripleColumn(grid))
+                grid = (tripleRow(grid))
             case 22:
-                grid = (doubleSymetryRow(grid))
+                grid = (doubleColumn(grid))
             case 23:
+                grid = (tripleColumn(grid))
+            case 24:
+                grid = (doubleSymetryRow(grid))
+            case 25:
                 grid = (doubleSymetryColumn(grid))
-            # case 24:
-            #    grid = (symetryFourPart(grid))
-            # case 25:
-            #    grid = (centralSymetry(grid))
-            # case 26:
+            case 26:
+                grid = (centralSymetry(grid))
+            case 27:
+                grid = (inversion(grid))
+            case 28:
+                grid = (removeNoiseFromGrid(grid))
+            case 29:
+                grid = (lenghtReduction(grid))
+            case 30:
+                grid = (widthReduction(grid))
+            case 31:
+                grid = (translationVerticaleEnHaut(grid))
+            case 32:
+                grid = (translationHorizontaleADroite(grid))
+            case 33:
+                grid = (translationVerticaleEnBas(grid))
+            case 34:
+                grid = (translationHorizontaleAGauche(grid))
+            # case 35:
+            #     grid = (rotational_symmetry(grid,angle))
+            # case 36:
+            #     grid = (mirrorGrid(grid,angle))
+            # case 37:
             #    grid = (commonElement(grid, grid))
 
     return grid

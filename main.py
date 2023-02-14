@@ -28,7 +28,7 @@ if __name__ == '__main__':
     #grilleSortie = applyFunctions(res[0],gridEntree1)
 
     #Pour tester sa primitive il faut remplacer le empty par le nom de sa fonction
-    grilleSortie = inversion(gridEntree1)
+    grilleSortie = translationHorizontaleAGauche(gridEntree1)
 
     gt = [[0,0],[1,1]]
     gt2 = [[0,0],[2,2]]
