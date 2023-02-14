@@ -1,8 +1,4 @@
 from random import randint
-import math 
-import numpy as np
-import cv2
-
 
 #Copie proprement les grilles
 def gridCopy(grid):
@@ -22,9 +18,8 @@ def completed(grid):
     return res
 
 
-#On utilise le gridCopy ou pas ?
 def rotateHalf(grid):
-    return grid.copy()[::-1]
+    return gridCopy(grid)[::-1]
 
 
 def rotateLeft(grid):
@@ -135,7 +130,7 @@ def axialSymmetryX(grid):
     res = gridCopy(grid)
     for i in range(0,len(grid)):
         for j in range(0,len(grid[i])):
-                    res[i][j] = grid[len(grid)-i-1][j]
+                res[i][j] = grid[len(grid)-i-1][j]
     return res
 
 
@@ -151,7 +146,7 @@ def copyHalfX(grid):
     res = gridCopy(grid)
     for i in range(0,int(len(grid)/2)):
         for j in range(0,len(grid[i])):
-                    res[i][j] = grid[len(grid)-i-1][j]
+                res[i][j] = grid[len(grid)-i-1][j]
     return res
 
 
@@ -258,40 +253,119 @@ def doubleSymetryColumn(grid):
             res[i][len(grid[0])+j] = sym[i][j]
     return res
 
+# NE FONCTIONNE QUE POUR UN CARRE SINON RETOURNE COPY
+def centralSymetry(grid):
+    if (len(grid) == len(grid[0])):
+        res = gridCopy(grid)
+        for i in range(len(res)):
+            for j in range(len(res[0])):
+                res[i][j] = grid[j][i]
+        return res
+    else:
+        res2 = gridCopy(grid)
+        return res2
 
-# EST CE QU'ON GARDE ? ON A PLUS SIMPLE JE PENSE MAINTENANT ?
-# LES 2 COPY HALF FONT LE JOB JE PENSE...
-# def symetryFourPart(grid):
-#    res = gridCopy(grid)
-#    tmp = grid.getCornerUpLeft()
-#    nbRow = len(tmp)
-#    nbColumn = len(tmp[0])
-#    for i in range(0,nbRow):
-#        for j in range(0,nbColumn):
-#            res[i][j] = tmp[i][j]
-#    tmp = rotateRight(tmp)
-#    for i in range(0,nbRow):
-#        for j in range(0,nbColumn):
-#            res[i][j+nbColumn] = tmp[i][j]
-#    tmp = rotateRight(tmp)
-#    for i in range(0,nbRow):
-#        for j in range(0,nbColumn):
-#            res[i+nbRow][j+nbColumn] = tmp[i][j]
-#    tmp = rotateRight(tmp)
-#    for i in range(0,nbRow):
-#        for j in range(0,nbColumn):
-#            res[i+nbRow][j] = tmp[i][j]
-#    return (res)
 
-# NE FONCTIONNE QUE POUR UN CARRE
-# def centralSymetry(grid):
-#     res = gridCopy(grid)
-#     for i in range(len(res)):
-#         for j in range(len(res[0])):
-#             res[i][j] = grid[j][i]
-#     return res
+def inversion(grid):
+    inverted_grid = [[9 - grid[i][j] for j in range(len(grid[0]))] for i in range(len(grid))]
+    return inverted_grid
+
+
+def removeNoiseFromGrid(grid, seuil=9):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if res[i][j] < seuil:
+                res[i][j] = 0
+    return res
+
+
+def lenghtReduction(grid):
+    t = randint(1,len(grid))
+    res = [[0 for _ in range(len(grid[0]))] for _ in range(t)]
+    for i in range(0, t):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def widthReduction(grid):
+    t = randint(1,len(grid[0]))
+    res = [[0 for _ in range(t)] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, t):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def translationVerticaleEnHaut(grid):
+    res = gridCopy(grid)
+    for i in range(0,len(grid)-1):
+        for j in range(0,len(grid[0])):
+            res[i][j] = grid[i+1][j]
+    for l in range(0,len(grid[0])):
+        res[len(grid)-1][l] = grid[0][l]
+    return res
+
+
+def translationHorizontaleADroite(grid):
+    res = gridCopy(grid)
+    for i in range(len(res)):
+        for j in range(len(res[0]) - 2, -1, -1):
+            res[i][j + 1] = grid[i][j]
+        res[i][0] = grid[i][len(grid[0])-1]
+    return res
+
+
+def translationVerticaleEnBas(grid):
+    res = gridCopy(grid)
+    for i in range(len(res) - 2, -1, -1):
+        for j in range(len(res[0])):
+            res[i + 1][j] = grid[i][j]
+    for l in range(0, len(grid[0])):
+        res[0][l] = grid[len(grid)-1][l]
+    return res
+
+
+def translationHorizontaleAGauche(grid):
+    res = gridCopy(grid)
+    for i in range(len(res)):
+        for j in range(1, len(res[0])):
+            res[i][j - 1] = grid[i][j]
+        res[i][len(grid[0])-1] = grid[i][0]
+    return res
+
+
+#PAS COMPRIS + ERREUR INDEX
+# def rotational_symmetry(grid, angle):
+#     n = len(grid)
+#     new_grid = [[0 for j in range(n)] for i in range(n)]
+#     center = (n-1) / 2
+#     radians = math.radians(angle)
+#     for i in range(n):
+#         for j in range(n):
+#             x = (i - center) * math.cos(radians) + (j - center) * math.sin(radians)
+#             y = -(i - center) * math.sin(radians) + (j - center) * math.cos(radians)
+#             x = int(round(x + center))
+#             y = int(round(y + center))
+#             if x >= 0 and x < n and y >= 0 and y < n:
+#                 new_grid[x][y] = grid[i][j]
+#     return new_grid
+
+
+#ERREUR INDEX
+#DEJA COUVERT PAR LES AXIALSYMETRY ?
+# def mirrorGrid (grid, angle):
+#     new_grid =  rotational_symmetry(grid, 180 + angle)
+#     for i in range (len(grid)//2):
+#         for j in range (len(grid)//2):
+#             new_grid [i][j] = grid [i][j]
+#
+#     return new_grid
+
 
 # NE FONCTIONNE QUE SI LES TAILLES DES 2 GRILLES SONT LES MEMES
+# EST CE QU'ON GARDE ?
 #def commonElement(grid,grid2):
 #     res = gridCopy(grid)
 #     for i in range(len(grid)):
@@ -302,98 +376,3 @@ def doubleSymetryColumn(grid):
 #                 res[i][j] = 0
 #             #res[i][j] = grid[i][j] - grid2[i][j]
 #     return res
-
-
-def inversion(grid):
-    n = len(grid)
-    inverted_grid = [[9 - grid[i][j] for j in range(n)] for i in range(n)]
-    return inverted_grid
-
-
-
-def rotational_symmetry(grid, angle):
-    n = len(grid)
-    new_grid = [[0 for j in range(n)] for i in range(n)]
-    center = (n-1) / 2
-    radians = math.radians(angle)
-    for i in range(n):
-        for j in range(n):
-            x = (i - center) * math.cos(radians) + (j - center) * math.sin(radians)
-            y = -(i - center) * math.sin(radians) + (j - center) * math.cos(radians)
-            x = int(round(x + center))
-            y = int(round(y + center))
-            if x >= 0 and x < n and y >= 0 and y < n:
-                new_grid[x][y] = grid[i][j]
-    return new_grid
-
-def rescale (grid, dimension):
-    n = len(grid)
-    new_grid = [[0 for j in range(dimension)] for i in range(dimension)]
-    for i in range(dimension): 
-        for j in range(dimension):
-            new_grid[i][j] = grid [i][j]
-
-    return new_grid 
-
-def mirrorGrid (grid, angle):
-    new_grid =  rotational_symmetry(grid, 180 + angle)
-    for i in range (len(grid)//2):
-        for j in range (len(grid)//2):
-            new_grid [i][j] = grid [i][j]
-
-    return new_grid 
-
-
-def removeNoiseFromGrid(grid, seuil=9): 
-    grid = np.array(grid)
-    rows, cols = grid.shape
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] < seuil:
-                grid[i][j] = 0
-    return grid
-
-
-'''---------------------------------------------------------------------------------------------------------------------------------------------'''
-
-'''Petit problème je ne comprend pas pourquoi parfois ça me met des index out of bound (pour les 4 fonctions) alors que tout est bien configuré ?'''
-
-def translationVerticaleEnHaut(grid, nbCases=0): 
-    grille = gridCopy(grid)
-    if(len(grid)>nbCases):
-        for i in range(len(grid)):
-            for j in range(len(grid)):
-                grille[(i + nbCases) % len(grid)][j] = grid[i][j]
-    return grille
-
-
-def translationHorizontaleADroite(grid, nbCases=0):
-    grille = gridCopy(grid)
-    if(len(grid)>nbCases):
-        for i in range(len(grid)):
-            for j in range(len(grid)):
-                nouveau_j = (j + nbCases) % len(grid)
-                grille[i][nouveau_j] = grid[i][j]
-    return grille
-
-
-def translationVerticaleEnBas(grid, nbCases=0): 
-    grille = gridCopy(grid)
-    if (len(grid)>nbCases):
-        for i in range(len(grid)):
-            for j in range(len(grid)):
-                grille[(i - nbCases) % len(grid)][j] = grid[i][j]
-    return grille
-
-def translationHorizontaleAGauche(grid, nbCases=0):
-    grille = gridCopy(grid)
-    if (len(grid)>nbCases):
-        for i in range(len(grid)):
-            for j in range(len(grid)):
-                nouveau_j = (j - nbCases) % len(grid)
-                grille[i][nouveau_j] = grid[i][j]
-    return grille
-
-
-'''---------------------------------------------------------------------------------------------------------------------------------------------'''
-
