@@ -66,8 +66,12 @@ class Population:
             self.individus[i].croiser2Individus(self.individus[3])
             populationTemp.append(self.individus[i])
         # commentaire 4
-        for i in range(50, 100):
+        for i in range(50, 90):
             populationTemp.append(Individu(1,self.imageDepart,self.imageEsperee))
+        cpt = 0
+        for i in range(90,100):
+            populationTemp.append(self.individus[cpt])
+            cpt = cpt + 1
         self.modifierGrille()
         
     def evolutionPopulation(self):

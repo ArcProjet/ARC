@@ -24,21 +24,21 @@ class Grille:
         #    self.data = fonction(self.data)
     
     def comparer(self, grilleEsperee):
-        cpt = 0
-        cptPixelNoir = 0
-        if(len(self.data) != len(grilleEsperee) or len(self.data[0]) != len(grilleEsperee[0])): # Temporaire avec les grilles non carré
-            return 0
-        for i in range(0,len(self.data)):
-            for j in range(0,len(self.data[0])):
-                # if(self.imageEsperee[i][j] != 0): # compte les pixels noirs
-                    # cptPixelNoir += 1
-                if(grilleEsperee[i][j] == self.data[i][j]):   #and self.expected[i][j] != 0):
-                    cpt += 1
-        res = 100*(cpt/(len(self.data)*len(self.data[0])))
-        #res = 100*(cpt/cptVide)
-        #print("Le pourcentage de réussite est de " + str(res) + "%")
-        return res
-    
-    
+        if(len(self.data) > 0 and len(self.data[0]) > 0):
+            nb_pixels = len(self.data) * len(self.data[0])
+            nb_pixels_identiques = 0
+            if len(self.data) != len(grilleEsperee) or len(self.data[0]) != len(grilleEsperee[0]):
+                # Les deux grilles n'ont pas la même taille, on ne peut pas les comparer.
+                return 0
+            for i in range(len(self.data)):
+                for j in range(len(self.data[0])):
+                    if grilleEsperee[i][j] == self.data[i][j]:
+                        # Le pixel (i, j) des deux grilles est identique.
+                        nb_pixels_identiques += 1
+            if nb_pixels == 0:
+                # Les deux grilles sont vides, on considère qu'elles sont identiques.
+                return 100
+            return nb_pixels_identiques / nb_pixels * 100
+        return 0
 
           
