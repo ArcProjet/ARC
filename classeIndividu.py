@@ -10,7 +10,7 @@ from random import randint
 import classeGrille
 from JsonLoader import *
 
-toutesNosFonctions = [empty,rotateHalf, rotateLeft, rotateRight, centralSymetry,symetryFourPart,extendColorDown,extendColorLeft,extendColorRight,extendColorUp,growingColor] # variables de classe partagées par toutes les instances
+toutesNosFonctions = [completed,gridCopy,rotateHalf,rotateLeft,rotateRight,extendLine,extendColumn,extendColorUp,extendColorDown,extendColorLeft,extendColorRight,growingColor,axialSymmetryX,axialSymmetryY,copyHalfX,copyHalfY,xHalf,yHalf,changeAColor,completeColor,centralSymetry,inversion,removeNoiseFromGrid] # variables de classe partagées par toutes les instances
 taille = 20 # taille du tableau "fonctions",
 
 class Individu:
@@ -43,6 +43,7 @@ class Individu:
     def attribuerScore(self):
         # compare l'image générée par l'individu à l'image attendue
         self.score = self.grille.comparer(self.imageEsperee) # compare est une méthode de la classe Grid
+        #print(self.score if self.score > 50 else "")
         
     def croiser2Individus(self, individu2): # on fabrique unn nouvel individu à partir de 2 individus de la génération précédente
         newIndividu = Individu(1,self.imageDepart,self.imageEsperee)

@@ -31,7 +31,10 @@ class Population:
         #for i in range (0, taille):
         dicoIndividusTemp = {}
         for i in self.individus:
+            #if i.score > 0:
+           #     print(i.score)
             dicoIndividusTemp[i] = i.score
+            #print(dicoIndividusTemp)
         sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
         self.individus = list(dicoIndividusTemp.keys())
     

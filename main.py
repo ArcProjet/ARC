@@ -15,6 +15,22 @@ def displayGrid(grid1,grid2,title1,title2):
     axs[1].axis('off')
     axs[1].matshow(grid2, cmap='rainbow')
 
+def comparer(data,grilleEsperee):
+        cpt = 0
+        cptPixelNoir = 0
+        if(len(data) != len(grilleEsperee) or len(data[0]) != len(grilleEsperee[0])): # Temporaire avec les grilles non carré
+            return 0
+        for i in range(0,len(data)):
+            for j in range(0,len(data[0])):
+                # if(self.imageEsperee[i][j] != 0): # compte les pixels noirs
+                    # cptPixelNoir += 1
+                if(grilleEsperee[i][j] == data[i][j]):   #and self.expected[i][j] != 0):
+                    cpt += 1
+        res = 100*(cpt/(len(data)*len(data[0])))
+        #res = 100*(cpt/cptVide)
+        #print("Le pourcentage de réussite est de " + str(res) + "%")
+        return res
+
 if __name__ == '__main__':
     grillestrain,grillestest = openJsonFile()
     gridTrain1 = grillestrain[0]['input'],grillestrain[0]['output']
@@ -27,6 +43,8 @@ if __name__ == '__main__':
     p.genererPopulation()
     p.evolutionPopulation()
     
+    print(comparer(p.individus[-1].grille.data,p.imageEsperee))
+
     displayGrid(p.imageDepart,p.individus[0].grille.data,"Grille de départ","Grille obtenu")
     
     #ttt.ExpectationVsreality()

@@ -1,187 +1,433 @@
-def copy(grid):
-    res = []
-    for i in range(len(grid)):
-        tmp = []
-        for j in range(len(grid[i])):
-            tmp.append(grid[i][j])
-        res.append(tmp)
-    return res
+from random import randint
 
-def leftCornerUp(grid):
-    res = []
-    for i in range(len(grid)//2):
-        tmp = []
-        for j in range(len(grid[i])//2):
-            tmp.append(grid[i][j])
-        res.append(tmp)
-    return res
-
-
-def empty(grid, c=0):
-    return copy(grid)
-
-def completed(grid, c):
-    res = copy(grid)#[[0 for i in range(len(grid))] for j in range(len(grid[0]))] 
-    for i in range(len(grid)):
+#Copie proprement les grilles
+def gridCopy(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range(len(grid))]
+    for i in range(0,len(grid)):
         for j in range(0,len(grid[i])):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def completed(grid):
+    res = gridCopy(grid)
+    c = randint(0, 9)
+    for i in range(len(res)):
+        for j in range(len(res[i])):
             res[i][j] = c
-    return (res)
-
-def rotateHalf(grid, c=0):
-    return (copy(grid)[::-1])
-
-def rotateLeft(grid, c=0):
-    res = copy(grid)
-    if(len(grid) == len(grid[0])):
-        for i in range(len(grid)):
-            cpt = 0
-            for j in range(len(grid[0])):
-                res[i][j] = grid[cpt][len(grid[0])-i-1]
-                cpt += 1
-    return (res)
+    return res
 
 
-def rotateRight(grid, c=0):
-    res = copy(grid) 
-    if(len(grid) == len(grid[0])):
-        for i in range(len(grid)):
-            cpt = len(grid) - 1
-            for j in range(len(grid[0])):
-                res[i][j] = grid[cpt][i]
-                cpt -= 1
-    return (res)
+def rotateHalf(grid):
+    return gridCopy(grid)[::-1]
 
-def centralSymetry(grid, c=0):
-    res = copy(grid)
-    if(len(grid) == len(grid[0])):
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                res[i][j] = grid[j][i]
-    return (res)
 
-# EN TRAVAUX
-def symetryFourPart(grid, c=0):
-    res = copy(grid)#[[0 for i in range(len(grid[0]))] for j in range(len(grid))] 
-    if(len(grid)%2==0 and len(grid[0])%2==0):
-        tmp = leftCornerUp(grid)
-        nbRow = len(tmp)
-        nbColumn = len(tmp[0])
-        for i in range(0,nbRow):
-            for j in range(0,nbColumn):
-                res[i][j] = tmp[i][j]
-        tmp = rotateRight(tmp)
-        for i in range(0,nbRow):
-            for j in range(0,nbColumn):
-                res[i][j+nbColumn] = tmp[i][j]
-        tmp = rotateRight(tmp)
-        for i in range(0,nbRow):
-            for j in range(0,nbColumn):
-                res[i+nbRow][j+nbColumn] = tmp[i][j]
-        tmp = rotateRight(tmp)
-        for i in range(0,nbRow):
-            for j in range(0,nbColumn):
-                res[i+nbRow][j] = tmp[i][j]
-    return (res)
+def rotateLeft(grid):
+    res = [[0 for _ in range(len(grid))] for _ in range(len(grid[0]))]
+    for i in range(len(res)):
+        cpt = 0
+        for j in range(len(res[0])):
+            res[i][j] = grid[cpt][len(grid[0]) - i - 1]
+            cpt += 1
+    return res
 
-def extendLine(grid, c, line):
-    res = copy(grid)
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
+
+def rotateRight(grid):
+    res = [[0 for _ in range(len(grid))] for _ in range(len(grid[0]))]
+    for i in range(len(res)):
+        cpt = len(grid)
+        for j in range(len(res[0])):
+            cpt -= 1
+            res[i][j] = grid[cpt][i]
+    return res
+
+
+def extendLine(grid):
+    res = gridCopy(grid)
+    line = randint(0,len(grid))
+    c = randint(0,9)#res[line][randint(0,len(res[0]))]
+    for i in range(len(res)):
+        for j in range(len(res[0])):
             if(i == line):
                 res[i][j] = c
-    return (res)
+    return res
 
-def extendColumn(grid, c, column):
-    res = copy(grid)
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
+
+def extendColumn(grid):
+    res = gridCopy(grid)
+    column = randint(0,len(grid[0])-1)
+    c = randint(0,9)#res[randint(0, len(res) - 1)][column]
+    for i in range(len(res)):
+        for j in range(len(res[0])):
             if(j == column):
                 res[i][j] = c
-    return (res)
+    return res
 
-def extendColorUp(grid, c):
-    res = copy(grid)
-    for i in range(1,len(grid)): # for i in range(1,len(grid)()-1):
-        for j in range(len(grid[0])): # for j in range(1,len(grid[0])-1):
+
+def extendColorUp(grid):
+    res = gridCopy(grid)
+    c = randint(0,9)#res[randint(0,len(res))][randint(0,len(res[0]))]
+    for i in range(1,len(res)):
+        for j in range(len(res[0])):
             if(res[i][j] == c):
                 res[i-1][j] = c
-    return (res)
+    return res
 
-def extendColorDown(grid, c):
-    res = copy(grid)
-    for i in range(len(grid)-2,0,-1): # for i in range(len(grid)()-1,1,-1):
-        for j in range(len(grid[0])): # for j in range(1,len(grid[0])-1):
+
+def extendColorDown(grid):
+    res = gridCopy(grid)
+    c = randint(0,9)#res[randint(0,len(res))][randint(0,len(res[0]))]
+    for i in range(len(res)-2,-1,-1):
+        for j in range(len(res[0])):
             if(res[i][j] == c):
                 res[i+1][j] = c
-    return (res)
+    return res
 
-def extendColorLeft(grid, c):
-    res = copy(grid)
-    for i in range(len(grid)): # for i in range(1,len(grid)()-1):
-        for j in range(1,len(grid[0])): # for j in range(1,len(grid[0])-1):
+
+def extendColorLeft(grid):
+    res = gridCopy(grid)
+    c = randint(0,9)#res[randint(0,len(res))][randint(0,len(res[0]))]
+    for i in range(len(res)):
+        for j in range(1,len(res[0])):
             if(res[i][j] == c):
                 res[i][j-1] = c
-    return (res)
+    return res
 
-def extendColorRight(grid, c):
-    res = copy(grid)
-    for i in range(len(grid)): # for i in range(1,len(grid)()-1):
-        for j in range(len(grid[0])-2,0,-1): # for j in range(len(grid[0])-1,1,-1):
+
+def extendColorRight(grid):
+    res = gridCopy(grid)
+    c = randint(0,9)#res[randint(0,len(res))][randint(0,len(res[0]))]
+    for i in range(len(res)):
+        for j in range(len(res[0])-2,-1,-1):
             if(res[i][j] == c):
                 res[i][j+1] = c
-    return (res)
+    return res
 
-def growingColor(grid, c):
-    res = copy(grid)
-    for i in range(1,len(grid)): # for i in range(1,len(grid)()):
-        for j in range(len(grid[0])): # for j in range(1,len(grid[0])-1):
-            if(res[i][j] == c):
+
+def growingColor(grid):
+    res = gridCopy(grid)
+    c = grid[randint(0,len(grid)-1)][randint(0,len(grid[0])-1)]
+    for i in range(1,len(grid)):
+        for j in range(len(grid[0])):
+            if(grid[i][j] == c):
                 res[i-1][j] = c
-    for k in range(0,len(grid)): # for k in range(1,len(grid)()-1):
-        for l in range(len(grid[0])-2,0,-1): # for l in range(len(grid[0])-1,1,-1):
-            if(res[k][l] == c):
+    for k in range(0,len(grid)):
+        for l in range(len(grid[0])-2,-1,-1):
+            if(grid[k][l] == c):
                 res[k][l+1] = c
-    for m in range(len(grid)-2,0,-1): # for m in range(len(grid)()-1,1,-1):
-        for n in range(len(grid[0])): # for n in range(1,len(grid[0])-1):
-            if(res[m][n] == c):
+    for m in range(len(grid)-2,-1,-1):
+        for n in range(len(grid[0])):
+            if(grid[m][n] == c):
                 res[m+1][n] = c
-    for o in range(len(grid)): # for o in range(1,len(grid)()-1):
-        for p in range(1,len(grid[0])): # for p in range(1,len(grid[0])-1):
-            if(res[o][p] == c):
+    for o in range(len(grid)):
+        for p in range(1,len(grid[0])):
+            if(grid[o][p] == c):
                 res[o][p-1] = c
-    return (res)
-    
-def axialSymmetryX(grid, c=0):
-    res = copy(grid)
-    if(len(grid[0])%2==0):
-        for i in range(len(grid[0])):
-            for j in range(len(grid)):
-                if (j != 0): 
-                    res[i][j] = grid[i][-j]
-                    res[i][-j] = grid[i][j]             
-    
-    return (res)
+    return res
 
 
-def axialSymmetryY(grid, c=0):
-    res = copy(grid)
-    if(len(grid)%2==0):
-        for j in range(len(grid)):
-            for i in range(len(grid[0])):
-                if(i != 0):
-                    res[i][j] = grid[-i][j]
-                    res[-i][j] = grid[i][j]
-    
-    return (res)
+def axialSymmetryX(grid):
+    res = gridCopy(grid)
+    for i in range(0,len(grid)):
+        for j in range(0,len(grid[i])):
+                res[i][j] = grid[len(grid)-i-1][j]
+    return res
 
-def commonElement(grid,grid2):
-    res = copy(grid)#[[0 for i in range(len(grid[0]))] for j in range(len(grid))]
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if(grid[i][j] - grid2[i][j] == 0):
-                res[i][j] = grid[i][j]
-            else:
+
+def axialSymmetryY(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][len(grid[0])-j-1]
+    return res
+
+
+def copyHalfX(grid):
+    res = gridCopy(grid)
+    for i in range(0,int(len(grid)/2)):
+        for j in range(0,len(grid[i])):
+                res[i][j] = grid[len(grid)-i-1][j]
+    return res
+
+
+def copyHalfY(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, int(len(grid[i])/2)):
+            res[i][j] = grid[i][len(grid[0])-j-1]
+    return res
+
+
+def xHalf(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range(int(len(grid)/2))]
+    for i in range(0, int(len(grid)/2)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def yHalf(grid):
+    res = [[0 for _ in range(int(len(grid[0])/2))] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, int(len(grid[i])/2)):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def changeAColor(grid):
+    res = gridCopy(grid)
+    c = randint(0,9)#res[randint(0, len(res) - 1)][randint(0, len(res[0]) - 1)]
+    newC = randint(0,9)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == c):
+                res[i][j] = newC
+    return res
+
+#AU FINAL, TRES SIMILAIRE A CHANGECOLOR...
+#AFFICHAGE SOUVENT BUGUER
+def completeColor(grid):
+    res = gridCopy(grid)
+    newC = randint(0, 9)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if (res[i][j] == 0):
+                res[i][j] = newC
+    return res
+
+
+def doubleRow(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range((len(grid))*2)]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[len(grid)+i][j] = grid[i][j]
+    return res
+
+
+def tripleRow(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range((len(grid))*3)]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[len(grid)+i][j] = grid[i][j]
+            res[(len(grid)*2)+i][j] = grid[i][j]
+    return res
+
+
+def doubleColumn(grid):
+    res = [[0 for _ in range((len(grid[0]))*2)] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[i][len(grid[0])+j] = grid[i][j]
+    return res
+
+
+def tripleColumn(grid):
+    res = [[0 for _ in range((len(grid[0]))*3)] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[i][len(grid[0])+j] = grid[i][j]
+            res[i][(len(grid[0])*2)+j] = grid[i][j]
+    return res
+
+
+def doubleSymetryRow(grid):
+    res = [[0 for _ in range(len(grid[0]))] for _ in range((len(grid))*2)]
+    sym = axialSymmetryX(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[len(grid)+i][j] = sym[i][j]
+    return res
+
+
+def doubleSymetryColumn(grid):
+    res = [[0 for _ in range((len(grid[0]))*2)] for _ in range(len(grid))]
+    sym = axialSymmetryY(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+            res[i][len(grid[0])+j] = sym[i][j]
+    return res
+
+# NE FONCTIONNE QUE POUR UN CARRE SINON RETOURNE COPY
+def centralSymetry(grid):
+    if (len(grid) == len(grid[0])):
+        res = gridCopy(grid)
+        for i in range(len(res)):
+            for j in range(len(res[0])):
+                res[i][j] = grid[j][i]
+        return res
+    else:
+        res2 = gridCopy(grid)
+        return res2
+
+
+def inversion(grid):
+    inverted_grid = [[9 - grid[i][j] for j in range(len(grid[0]))] for i in range(len(grid))]
+    return inverted_grid
+
+
+def removeNoiseFromGrid(grid, seuil=9):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if res[i][j] < seuil:
                 res[i][j] = 0
-            #res[i][j] = grid[i][j] - grid2[i][j]
-    return (res)
+    return res
 
+
+def lenghtReduction(grid):
+    t = randint(1,len(grid))
+    res = [[0 for _ in range(len(grid[0]))] for _ in range(t)]
+    for i in range(0, t):
+        for j in range(0, len(grid[i])):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def widthReduction(grid):
+    t = randint(1,len(grid[0]))
+    res = [[0 for _ in range(t)] for _ in range(len(grid))]
+    for i in range(0, len(grid)):
+        for j in range(0, t):
+            res[i][j] = grid[i][j]
+    return res
+
+
+def translationVerticaleEnHaut(grid):
+    res = gridCopy(grid)
+    for i in range(0,len(grid)-1):
+        for j in range(0,len(grid[0])):
+            res[i][j] = grid[i+1][j]
+    for l in range(0,len(grid[0])):
+        res[len(grid)-1][l] = grid[0][l]
+    return res
+
+
+def translationHorizontaleADroite(grid):
+    res = gridCopy(grid)
+    for i in range(len(res)):
+        for j in range(len(res[0]) - 2, -1, -1):
+            res[i][j + 1] = grid[i][j]
+        res[i][0] = grid[i][len(grid[0])-1]
+    return res
+
+
+def translationVerticaleEnBas(grid):
+    res = gridCopy(grid)
+    for i in range(len(res) - 2, -1, -1):
+        for j in range(len(res[0])):
+            res[i + 1][j] = grid[i][j]
+    for l in range(0, len(grid[0])):
+        res[0][l] = grid[len(grid)-1][l]
+    return res
+
+
+def translationHorizontaleAGauche(grid):
+    res = gridCopy(grid)
+    for i in range(len(res)):
+        for j in range(1, len(res[0])):
+            res[i][j - 1] = grid[i][j]
+        res[i][len(grid[0])-1] = grid[i][0]
+    return res
+
+
+#PAS COMPRIS + ERREUR INDEX
+# def rotational_symmetry(grid, angle):
+#     n = len(grid)
+#     new_grid = [[0 for j in range(n)] for i in range(n)]
+#     center = (n-1) / 2
+#     radians = math.radians(angle)
+#     for i in range(n):
+#         for j in range(n):
+#             x = (i - center) * math.cos(radians) + (j - center) * math.sin(radians)
+#             y = -(i - center) * math.sin(radians) + (j - center) * math.cos(radians)
+#             x = int(round(x + center))
+#             y = int(round(y + center))
+#             if x >= 0 and x < n and y >= 0 and y < n:
+#                 new_grid[x][y] = grid[i][j]
+#     return new_grid
+
+
+#ERREUR INDEX
+#DEJA COUVERT PAR LES AXIALSYMETRY ?
+# def mirrorGrid (grid, angle):
+#     new_grid =  rotational_symmetry(grid, 180 + angle)
+#     for i in range (len(grid)//2):
+#         for j in range (len(grid)//2):
+#             new_grid [i][j] = grid [i][j]
+#
+#     return new_grid
+
+
+# NE FONCTIONNE QUE SI LES TAILLES DES 2 GRILLES SONT LES MEMES
+# EST CE QU'ON GARDE ?
+#def commonElement(grid,grid2):
+#     res = gridCopy(grid)
+#     for i in range(len(grid)):
+#         for j in range(len(grid[i])):
+#             if(grid[i][j] - grid2[i][j] == 0):
+#                 res[i][j] = grid[i][j]
+#             else:
+#                 res[i][j] = 0
+#             #res[i][j] = grid[i][j] - grid2[i][j]
+#     return res
+
+'''------------------------------------------------------------------------------------------------------------------------------------------'''
+
+'''A REVOIR LA FONCTION INVERSION A CAUSE DES COULEURS DES GRILLES (est ce que c'est 9 - .... ou 1 - ....) '''
+
+
+def inversion(grid):
+    n = len(grid)
+    inverted_grid = [[9 - grid[i][j] for j in range(len(grid[i]))] for i in range(n)]
+    return inverted_grid
+
+
+
+def rotational_symmetry(grid, angle=30):
+    n = len(grid)
+    new_grid = [[0 for j in range(n)] for i in range(n)]
+    center = (n-1) / 2
+    radians = math.radians(angle)
+    for i in range(n):
+        for j in range(n):
+            x = (i - center) * math.cos(radians) + (j - center) * math.sin(radians)
+            y = -(i - center) * math.sin(radians) + (j - center) * math.cos(radians)
+            x = int(round(x + center))
+            y = int(round(y + center))
+            if x >= 0 and x < n and y >= 0 and y < n:
+                new_grid[x][y] = grid[i][j]
+    return new_grid
+
+def rescale (grid, dimension):
+    n = len(grid)
+    new_grid = [[0 for j in range(dimension)] for i in range(dimension)]
+    for i in range(dimension): 
+        for j in range(dimension):
+            new_grid[i][j] = grid [i][j]
+
+    return new_grid 
+
+def mirrorGrid (grid, angle):
+    new_grid =  rotational_symmetry(grid, 180 + angle)
+    for i in range (len(grid)//2):
+        for j in range (len(grid)//2):
+            new_grid [i][j] = grid [i][j]
+
+    return new_grid 
+
+
+'''En cours : pour le moment pas trop d'idées là dessus '''
+
+'''
+def removeNoiseFromGrid(grid):
+    grid = np.array(grid)
+    grid = cv2.medianBlur(grid, len(grid))  # en supposant bien sur que la matrice est carrée 
+    return grid
+
+'''

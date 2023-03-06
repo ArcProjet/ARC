@@ -17,7 +17,8 @@ class Grille:
     def modifierGrille(self,grilleEntree,sequence):
         self.data = grilleEntree
         for fonction in sequence:
-            self.data = fonction(self.data,randint(0,9))
+            if(len(self.data) >= 1 and len(self.data[0]) >= 1):
+                self.data = fonction(self.data)
         #self.data = grilleEntree
         #for fonction in sequence:
         #    self.data = fonction(self.data)
