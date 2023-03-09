@@ -10,7 +10,7 @@ from random import randint
 import classeGrille
 from JsonLoader import *
 
-toutesNosFonctions = [completed,gridCopy,rotateHalf,rotateLeft,rotateRight,extendLine,extendColumn,extendColorUp,extendColorDown,extendColorLeft,extendColorRight,growingColor,axialSymmetryX,axialSymmetryY,copyHalfX,copyHalfY,xHalf,yHalf,changeAColor,completeColor,doubleRow,tripleRow,doubleColumn,tripleColumn,doubleSymetryRow,doubleSymetryColumn,centralSymetry,inversion,lenghtReduction,widthReduction,translationVerticaleEnHaut,translationHorizontaleADroite,translationVerticaleEnBas,translationHorizontaleAGauche]#[completed,gridCopy,rotateHalf,rotateLeft,rotateRight,extendLine,extendColumn,extendColorUp,extendColorDown,extendColorLeft,extendColorRight,growingColor,axialSymmetryX,axialSymmetryY,copyHalfX,copyHalfY,xHalf,yHalf,changeAColor,completeColor,centralSymetry,inversion,removeNoiseFromGrid] # variables de classe partagées par toutes les instances
+toutesNosFonctions = [completed,gridCopy,rotateHalf,rotateLeft,rotateRight,extendLine,extendColumn,extendColorUp,extendColorDown,extendColorLeft,extendColorRight,growingColor,axialSymmetryX,axialSymmetryY,copyHalfX,copyHalfY,xHalf,yHalf,changeAColor,completeColor,translationVerticaleEnHaut,translationHorizontaleADroite,translationVerticaleEnBas,translationHorizontaleAGauche]#[completed,gridCopy,rotateHalf,rotateLeft,rotateRight,extendLine,extendColumn,extendColorUp,extendColorDown,extendColorLeft,extendColorRight,growingColor,axialSymmetryX,axialSymmetryY,copyHalfX,copyHalfY,xHalf,yHalf,changeAColor,completeColor,centralSymetry,inversion,removeNoiseFromGrid] # variables de classe partagées par toutes les instances
 taille = 20 # taille du tableau "fonctions",
 
 class Individu:

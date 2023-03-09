@@ -35,9 +35,13 @@ class Population:
            #     print(i.score)
             dicoIndividusTemp[i] = i.score
             #print(dicoIndividusTemp)
-        sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
-        self.individus = list(dicoIndividusTemp.keys())
+        l = sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
+        self.individus = list(map(lambda x: x[0],l))[::-1]
+        print("best individu :",self.individus[0].score)
+        #self.individus = list(dicoIndividusTemp.keys())
     
+
+    # TODO : Refaire fonction
     def evoluerPopulation1Fois(self): # y a t il une fonction qui permet de trier une liste à partir d'un attribut des éléments de cette même liste
         
         # on suppose que la population de départ est triée
@@ -48,6 +52,8 @@ class Population:
         # 4 les 50 restants sont générés aléatoirement
         populationTemp = []
         self.trierPopulation()
+        #for k in range(len(self.individus)):
+        #    print(self.individus[k].score)
         # commentaire 2
         for i in range (0, 10):
             self.individus[i].muter()
@@ -72,6 +78,7 @@ class Population:
         for i in range(90,100):
             populationTemp.append(self.individus[cpt])
             cpt = cpt + 1
+        self.individus = populationTemp
         self.modifierGrille()
         
     def evolutionPopulation(self):
