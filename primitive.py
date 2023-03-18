@@ -13,7 +13,7 @@ def axialSymmetryX(grid):
     res = gridCopy(grid)
     for i in range(0,len(grid)):
         for j in range(0,len(grid[i])):
-                res[i][j] = grid[len(grid)-i-1][j]
+            res[i][j] = grid[len(grid)-i-1][j]
     return res
 
 #Effectue une symetrie sur l'axe des Y
@@ -41,7 +41,7 @@ def copyHalfX(grid):
     res = gridCopy(grid)
     for i in range(0,int(len(grid)/2)):
         for j in range(0,len(grid[i])):
-                res[i][j] = grid[len(grid)-i-1][j]
+            res[i][j] = grid[len(grid)-i-1][j]
     return res
 
 #Effectue une symetrie sur l'axe des Y de le moitié de la grille et la copie dans l'autre moitié de la grille
@@ -734,96 +734,6 @@ def growingColor9(grid):
                 res[o][p-1] = 9
     return res
 
-#Change le vide par 0
-def completeColor0(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 0
-    return res
-
-#Change le vide par 1
-def completeColor1(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 1
-    return res
-
-#Change le vide par 2
-def completeColor2(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 2
-    return res
-
-#Change le vide par 3
-def completeColor3(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 3
-    return res
-
-#Change le vide par 4
-def completeColor4(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 4
-    return res
-
-#Change le vide par 5
-def completeColor5(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 5
-    return res
-
-#Change le vide par 6
-def completeColor6(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 6
-    return res
-
-#Change le vide par 7
-def completeColor7(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 7
-    return res
-
-#Change le vide par 8
-def completeColor8(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 8
-    return res
-
-#Change le vide par 9
-def completeColor9(grid):
-    res = gridCopy(grid)
-    for i in range(0, len(grid)):
-        for j in range(0, len(grid[i])):
-            if (res[i][j] == 0):
-                res[i][j] = 9
-    return res
-
 #Enlève le "bruit" déterminer par un seuil de 0
 def removeNoise0(grid):
     res = gridCopy(grid)
@@ -914,6 +824,817 @@ def removeNoise9(grid):
                 res[i][j] = 0
     return res
 
+#Change la valeur 0 par 1
+def changeAColor0_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 0 par 2
+def changeAColor0_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 0 par 3
+def changeAColor0_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 0 par 4
+def changeAColor0_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 0 par 5
+def changeAColor0_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 0 par 6
+def changeAColor0_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 0 par 7
+def changeAColor0_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 0 par 8
+def changeAColor0_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 0 par 9
+def changeAColor0_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 0):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 1 par 0
+def changeAColor1_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 1 par 2
+def changeAColor1_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 1 par 3
+def changeAColor1_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 1 par 4
+def changeAColor1_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 1 par 5
+def changeAColor1_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 1 par 6
+def changeAColor1_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 1 par 7
+def changeAColor1_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 1 par 8
+def changeAColor1_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 1 par 9
+def changeAColor1_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 1):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 2 par 0
+def changeAColor2_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 2 par 1
+def changeAColor2_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 2 par 3
+def changeAColor2_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 2 par 4
+def changeAColor2_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 2 par 5
+def changeAColor2_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 2 par 6
+def changeAColor2_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 2 par 7
+def changeAColor2_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 2 par 8
+def changeAColor2_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 2 par 9
+def changeAColor2_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 2):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 3 par 0
+def changeAColor3_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 3 par 1
+def changeAColor3_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 3 par 2
+def changeAColor3_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 3 par 4
+def changeAColor3_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 3 par 5
+def changeAColor3_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 3 par 6
+def changeAColor3_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 3 par 7
+def changeAColor3_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 3 par 8
+def changeAColor3_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 3 par 9
+def changeAColor3_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 3):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 4 par 0
+def changeAColor4_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 4 par 1
+def changeAColor4_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 4 par 2
+def changeAColor4_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 4 par 3
+def changeAColor4_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 4 par 5
+def changeAColor4_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 4 par 6
+def changeAColor4_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 4 par 7
+def changeAColor4_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 4 par 8
+def changeAColor4_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 4 par 9
+def changeAColor4_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 4):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 5 par 0
+def changeAColor5_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 5 par 1
+def changeAColor5_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 5 par 2
+def changeAColor5_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 5 par 3
+def changeAColor5_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 5 par 4
+def changeAColor5_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 5 par 6
+def changeAColor5_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 5 par 7
+def changeAColor5_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 5 par 8
+def changeAColor5_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 5 par 9
+def changeAColor5_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 5):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 6 par 0
+def changeAColor6_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 6 par 1
+def changeAColor6_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 6 par 2
+def changeAColor6_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 6 par 3
+def changeAColor6_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 6 par 4
+def changeAColor6_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 6 par 5
+def changeAColor6_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 6 par 7
+def changeAColor6_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 6 par 8
+def changeAColor6_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 6 par 9
+def changeAColor6_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 6):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 7 par 0
+def changeAColor7_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 7 par 1
+def changeAColor7_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 7 par 2
+def changeAColor7_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 7 par 3
+def changeAColor7_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 7 par 4
+def changeAColor7_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 7 par 5
+def changeAColor7_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 7 par 6
+def changeAColor7_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 7 par 8
+def changeAColor7_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 8
+    return res
+
+#Change la valeur 7 par 9
+def changeAColor7_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 7):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 8 par 0
+def changeAColor8_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 8 par 1
+def changeAColor8_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 8 par 2
+def changeAColor8_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 8 par 3
+def changeAColor8_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 8 par 4
+def changeAColor8_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 8 par 5
+def changeAColor8_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 8 par 6
+def changeAColor8_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 8 par 7
+def changeAColor8_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 8 par 9
+def changeAColor8_9(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 8):
+                res[i][j] = 9
+    return res
+
+#Change la valeur 9 par 0
+def changeAColor9_0(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 0
+    return res
+
+#Change la valeur 9 par 1
+def changeAColor9_1(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 1
+    return res
+
+#Change la valeur 9 par 2
+def changeAColor9_2(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 2
+    return res
+
+#Change la valeur 9 par 3
+def changeAColor9_3(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 3
+    return res
+
+#Change la valeur 9 par 4
+def changeAColor9_4(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 4
+    return res
+
+#Change la valeur 9 par 5
+def changeAColor9_5(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 5
+    return res
+
+#Change la valeur 9 par 6
+def changeAColor9_6(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 6
+    return res
+
+#Change la valeur 9 par 7
+def changeAColor9_7(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 7
+    return res
+
+#Change la valeur 9 par 8
+def changeAColor9_8(grid):
+    res = gridCopy(grid)
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i])):
+            if(res[i][j] == 9):
+                res[i][j] = 8
+    return res
+
+
 #=================================================== FONCTIONNELLE ====================================================#
 #================================================== MAIS MIS DE COTE ==================================================#
 
@@ -971,17 +1692,6 @@ def removeNoise9(grid):
 #         for j in range(len(res[0])):
 #             if(j == column):
 #                 res[i][j] = c
-#     return res
-
-# #Change une couleur par une autre
-# def changeAColor(grid):
-#     res = gridCopy(grid)
-#     c = res[randint(0, len(res) - 1)][randint(0, len(res[0]) - 1)]            <-----
-#     newC = randint(0,9)                                                       <-----
-#     for i in range(0, len(grid)):
-#         for j in range(0, len(grid[i])):
-#             if(res[i][j] == c):
-#                 res[i][j] = newC
 #     return res
 
 # #Reduit la hauteur de la grille de façon aléatoire
