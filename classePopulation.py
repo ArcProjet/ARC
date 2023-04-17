@@ -6,6 +6,7 @@ Created on Sat Nov 19 10:57:28 2022
 """
 from classeIndividu import *
 import random
+import copy
 
 taille = 100
 nbCyclesMAX = 100
@@ -87,7 +88,7 @@ class Population:
         populationTemp = []
         self.trierPopulation()
         # On conserve le meilleur individu
-        populationTemp.append(self.individus[0]);
+        populationTemp.append(copy.deepcopy(self.individus[0]));
         for i in range (1,taille):
             populationTemp.append(self.genererNouveauIndividu())
         self.individus = populationTemp
