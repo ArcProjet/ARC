@@ -6,10 +6,11 @@ Created on Sat Nov 19 10:57:28 2022
 """
 from classeIndividu import *
 import random
+import copy
 
 taille = 100
 
-nbCyclesMAX = 1000
+nbCyclesMAX = 100
 #taille du groupe de la fonction generernouvelIndividu
 #on prend le meilleur individu d'un groupe de taille_groupe
 taille_groupe=5
@@ -41,7 +42,7 @@ class Population:
             #print(dicoIndividusTemp)
         l = sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
         self.individus = list(map(lambda x: x[0],l))[::-1]
-        print("best individu :",self.individus[0].score)
+        print("[+] Best individu :",self.individus[0].score)
         #self.individus = list(dicoIndividusTemp.keys())
     
     def genererNouveauIndividu(self):
@@ -89,7 +90,7 @@ class Population:
         populationTemp = []
         self.trierPopulation()
         # On conserve le meilleur individu
-        populationTemp.append(self.individus[0])
+        populationTemp.append(copy.deepcopy(self.individus[0]))
         for i in range (1,taille):
             populationTemp.append(self.genererNouveauIndividu())
         self.individus = populationTemp

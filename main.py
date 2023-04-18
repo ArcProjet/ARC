@@ -7,18 +7,21 @@ from classeGrille import Grille
 from classeIndividu import Individu
 from classePopulation import Population
 
-def displayGrid(gridInput,gridOutput,title1,title2):
+def displayGrid(gridInput,gridOutput,gridObtain,title1,title2,title3):
     colors = ['red', 'green', 'blue', 'yellow', 'magenta', 'cyan', 'purple', 'darkgreen', 'grey', 'black']
     values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     cmap = ListedColormap(colors)
     norm = BoundaryNorm(values, cmap.N)
-    fig, axs = plt.subplots(1,2)
+    fig, axs = plt.subplots(1,3)
     axs[0].set_title(title1)
     axs[0].axis('off')
     axs[0].matshow(gridInput, cmap=cmap,norm=norm)
     axs[1].set_title(title2)
     axs[1].axis('off')
     axs[1].matshow(gridOutput, cmap=cmap,norm=norm)
+    axs[2].set_title(title3)
+    axs[2].axis('off')
+    axs[2].matshow(gridObtain, cmap=cmap,norm=norm)
 
 def comparer(data,grilleEsperee):
         cpt = 0
@@ -27,26 +30,54 @@ def comparer(data,grilleEsperee):
             return 0
         for i in range(0,len(data)):
             for j in range(0,len(data[0])):
-                # if(self.imageEsperee[i][j] != 0): # compte les pixels noirs
-                    # cptPixelNoir += 1
-                if(grilleEsperee[i][j] == data[i][j]):   #and self.expected[i][j] != 0):
+                if(grilleEsperee[i][j] == data[i][j]):
                     cpt += 1
-        res = cpt#100*(cpt/(len(data)*len(data[0])))
-        #res = 100*(cpt/cptVide)
-        #print("Le pourcentage de réussite est de " + str(res) + "%")
+        res = cpt
         return res
 
-if __name__ == '__main__':
-    grillestrain,grillestest = openJsonFile()
+def solveGrid(grid):
+
+    grillestrain,grillestest = grid
     gridTrain1 = grillestrain[0]['input'],grillestrain[0]['output']
     gridTrain2 = grillestrain[1]['input'],grillestrain[1]['output']
+    grillestest = grillestest[0],grillestest[1]
 
     p1 = Population(gridTrain1[1],gridTrain1[0])
         
-    displayGrid(p1.imageDepart,p1.imageEsperee,"Grille de départ","Grille Attendu")
-
     p1.genererPopulation()
     p1.evolutionPopulation()
+
+    p2 = Population(gridTrain2[1],gridTrain2[0])
+        
+    p2.genererPopulation()
+    p2.evolutionPopulation()
     
-    displayGrid(p1.imageDepart,p1.individus[0].grille.data,"Grille de départ","Grille obtenu") 
+    bestP1 = p1.individus[0]
+    bestP2 = p2.individus[0]
+
+    scoreP1 = p1.individus[0].score
+    scoreP2 = p2.individus[0].score 
+
+    bestP1.grille.modifierGrille(gridTrain2[0],bestP1.fonctions)
+    print("[+] P1 score in train2 : " + str(bestP1.grille.comparer(gridTrain2[1])))
+    scoreP1 += bestP1.grille.comparer(gridTrain2[1])
+
+    bestP2.grille.modifierGrille(gridTrain1[0],bestP2.fonctions)
+    print("[+] P2 score in train1 : " + str(bestP2.grille.comparer(gridTrain1[1])))
+    scoreP2 += bestP2.grille.comparer(gridTrain1[1])
+
+    print("[+] Score for P1 : " + str(scoreP1/200) + " , Score for P2 : " + str(scoreP2/200))
+
+    if scoreP1 > scoreP2:
+        bestIndividu = bestP1
+    else:
+        bestIndividu = bestP2
+
+    bestP1.grille.modifierGrille(grillestest[0],bestP1.fonctions)
+    print("[+] Best individu score in final grid : " + str(bestP1.grille.comparer(grillestest[0])))
+
+    displayGrid(grillestest[0],grillestest[1],bestIndividu.grille.data,"Grille de départ","Grille de Fin","Grille obtenu")
     plt.show()
+
+if __name__ == '__main__':
+     solveGrid(openJsonFile())
