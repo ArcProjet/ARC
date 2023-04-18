@@ -10,7 +10,7 @@ import copy
 
 taille = 100
 
-nbCyclesMAX = 20
+nbCyclesMAX = 10
 #taille du groupe de la fonction generernouvelIndividu
 #on prend le meilleur individu d'un groupe de taille_groupe
 taille_groupe=5

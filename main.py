@@ -25,6 +25,20 @@ def displayGrid(gridInput,gridOutput,gridObtain,title1,title2,title3):
     axs[2].axis('off')
     axs[2].matshow(gridObtain, cmap=cmap,norm=norm)
 
+def crossOver(l1,l2,ind1,ind2):
+    
+    print(len(ind1))
+
+    for i in range(len(ind1)-int((NB_POPULATIONS/2))-1):
+        ind1[i] = l1[i]
+        ind2[i] = l2[i]
+
+    for i in range(len(ind1)-int((NB_POPULATIONS/2))-1,len(ind1)-(NB_POPULATIONS)):
+        ind1[i] = l2[i]
+        ind2[i] = l1[i]
+
+    return ind1,ind2
+
 def KingOfTheHill(grid):
 
     leaderboard = []
@@ -58,19 +72,14 @@ def solveGrid(grid):
     leaderboard2 = KingOfTheHill(gridTrain2)
 
     p1 = Population(gridTrain1[1],gridTrain1[0])
-    p1.individus = leaderboard1
-        
-    p1.genererPopulation()
-    p1.evolutionPopulation()
-
-    print("[+] Populations have chosen their King")
-
-    print("[+] --------- Prepare for King Battle ---------")
-
     p2 = Population(gridTrain2[1],gridTrain2[0])
-    p2.individus = leaderboard2
-        
+
+    p1.genererPopulation()
     p2.genererPopulation()
+
+    p1.individus,p2.individus = leaderboard1,leaderboard2#crossOver(leaderboard1,leaderboard2,p1.individus,p2.individus)
+
+    p1.evolutionPopulation()
     p2.evolutionPopulation()
     
     bestP1 = p1.individus[0]
@@ -79,7 +88,10 @@ def solveGrid(grid):
     scoreP1 = p1.individus[0].score
     scoreP2 = p2.individus[0].score 
 
-    print("[+] King Battle ending")
+
+    print("[+] Populations have chosen their King")
+
+    print("[+] --------- Prepare for King Battle ---------")
 
     bestP1.grille.modifierGrille(gridTrain2[0],bestP1.fonctions)
     print("[+] P1 score in train2 : " + str(bestP1.grille.comparer(gridTrain2[1])))
@@ -96,11 +108,13 @@ def solveGrid(grid):
     else:
         bestIndividu = bestP2
 
-    bestP1.grille.modifierGrille(grillestest[0],bestP1.fonctions)
-    print("[+] Best individu score in final grid : " + str(bestP1.grille.comparer(grillestest[1])))
+    bestIndividu.grille.modifierGrille(grillestest[0],bestIndividu.fonctions)
+    print("[+] Best individu score in final grid : " + str(bestIndividu.grille.comparer(grillestest[1])))
 
     displayGrid(grillestest[0],grillestest[1],bestIndividu.grille.data,"Grille de départ","Grille de Fin","Grille obtenu")
     plt.show()
 
+    return bestP1.grille.comparer(grillestest[1])
+
 if __name__ == '__main__':
-     solveGrid(openJsonFile())
+    solveGrid(openJsonFile())
