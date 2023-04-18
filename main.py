@@ -7,6 +7,8 @@ from classeGrille import Grille
 from classeIndividu import Individu
 from classePopulation import Population
 
+NB_POPULATIONS = 100
+
 def displayGrid(gridInput,gridOutput,gridObtain,title1,title2,title3):
     colors = ['red', 'green', 'blue', 'yellow', 'magenta', 'cyan', 'purple', 'darkgreen', 'grey', 'black']
     values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -23,17 +25,25 @@ def displayGrid(gridInput,gridOutput,gridObtain,title1,title2,title3):
     axs[2].axis('off')
     axs[2].matshow(gridObtain, cmap=cmap,norm=norm)
 
-def comparer(data,grilleEsperee):
-        cpt = 0
-        cptPixelNoir = 0
-        if(len(data) != len(grilleEsperee) or len(data[0]) != len(grilleEsperee[0])): # Temporaire avec les grilles non carré
-            return 0
-        for i in range(0,len(data)):
-            for j in range(0,len(data[0])):
-                if(grilleEsperee[i][j] == data[i][j]):
-                    cpt += 1
-        res = cpt
-        return res
+def KingOfTheHill(grid):
+
+    leaderboard = []
+
+    print("[+] --------- KingOfTheHill ---------")
+
+    for _ in range(NB_POPULATIONS):
+        
+        p1 = Population(grid[1],grid[0])
+        
+        p1.genererPopulation()
+        p1.evolutionPopulation()
+
+        leaderboard.append(p1.individus[0])
+
+        print("[+] ["+str(_)+"/"+str(NB_POPULATIONS-1)+"] Score : " + str(p1.individus[0].score))
+
+    return leaderboard
+
 
 def solveGrid(grid):
 
@@ -42,12 +52,23 @@ def solveGrid(grid):
     gridTrain2 = grillestrain[1]['input'],grillestrain[1]['output']
     grillestest = grillestest[0],grillestest[1]
 
+    print("[+] Populations choose their King")
+
+    leaderboard1 = KingOfTheHill(gridTrain1)
+    leaderboard2 = KingOfTheHill(gridTrain2)
+
     p1 = Population(gridTrain1[1],gridTrain1[0])
+    p1.individus = leaderboard1
         
     p1.genererPopulation()
     p1.evolutionPopulation()
 
+    print("[+] Populations have chosen their King")
+
+    print("[+] --------- Prepare for King Battle ---------")
+
     p2 = Population(gridTrain2[1],gridTrain2[0])
+    p2.individus = leaderboard2
         
     p2.genererPopulation()
     p2.evolutionPopulation()
@@ -58,6 +79,8 @@ def solveGrid(grid):
     scoreP1 = p1.individus[0].score
     scoreP2 = p2.individus[0].score 
 
+    print("[+] King Battle ending")
+
     bestP1.grille.modifierGrille(gridTrain2[0],bestP1.fonctions)
     print("[+] P1 score in train2 : " + str(bestP1.grille.comparer(gridTrain2[1])))
     scoreP1 += bestP1.grille.comparer(gridTrain2[1])
@@ -66,7 +89,7 @@ def solveGrid(grid):
     print("[+] P2 score in train1 : " + str(bestP2.grille.comparer(gridTrain1[1])))
     scoreP2 += bestP2.grille.comparer(gridTrain1[1])
 
-    print("[+] Score for P1 : " + str(scoreP1/200) + " , Score for P2 : " + str(scoreP2/200))
+    print("[+] Score for P1 : " + str(scoreP1/2) + " , Score for P2 : " + str(scoreP2/2))
 
     if scoreP1 > scoreP2:
         bestIndividu = bestP1

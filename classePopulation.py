@@ -10,7 +10,7 @@ import copy
 
 taille = 100
 
-nbCyclesMAX = 100
+nbCyclesMAX = 10
 #taille du groupe de la fonction generernouvelIndividu
 #on prend le meilleur individu d'un groupe de taille_groupe
 taille_groupe=5
@@ -42,7 +42,7 @@ class Population:
             #print(dicoIndividusTemp)
         l = sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
         self.individus = list(map(lambda x: x[0],l))[::-1]
-        print("[+] Best individu :",self.individus[0].score)
+        #print("[+] Best individu :",self.individus[0].score)
         #self.individus = list(dicoIndividusTemp.keys())
     
     def genererNouveauIndividu(self):
