@@ -97,7 +97,7 @@ def solveGrid(grid):
         bestIndividu = bestP2
 
     bestP1.grille.modifierGrille(grillestest[0],bestP1.fonctions)
-    print("[+] Best individu score in final grid : " + str(bestP1.grille.comparer(grillestest[0])))
+    print("[+] Best individu score in final grid : " + str(bestP1.grille.comparer(grillestest[1])))
 
     displayGrid(grillestest[0],grillestest[1],bestIndividu.grille.data,"Grille de départ","Grille de Fin","Grille obtenu")
     plt.show()
