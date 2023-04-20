@@ -15,7 +15,7 @@ def generateFctTab(nb,stage):
     return tab
 
 #La fonction utilise des primitives précisé dans le tableau tabFunctions
-def applyFunctions(tabFunctions,grid):
+"""def applyFunctions(tabFunctions,grid):
     for i in tabFunctions:
         match i:
             case 0:
@@ -31,7 +31,7 @@ def applyFunctions(tabFunctions,grid):
             case 5:
                 grid.setOutput(centralSymetry(grid))
             case 6:
-                grid.setOutput(symetryFourPart(grid))
+                grid.setOutput(empty(grid))
             case 7:
                 grid.setOutput(extendLine(grid,randint(0,grid.nbRow-1),randint(0,9)))
             case 8:
@@ -46,3 +46,5 @@ def applyFunctions(tabFunctions,grid):
                 grid.setOutput(extendColorRight(grid,randint(0,9)))
             case 13:
                 grid.setOutput(growingColor(grid,randint(0,9)))
+                
+                """
