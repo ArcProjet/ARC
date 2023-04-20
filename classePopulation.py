@@ -8,7 +8,7 @@ from classeIndividu import *
 import random
 import copy
 
-taille = 100
+taille = 200
 
 taux_mutation = 10
 
@@ -51,27 +51,35 @@ class Population:
     
     def genererNouveauIndividu(self):
         # on sélectionne 5 individus random
-        nombres_random = random.sample(range(taille), taille_groupe-1)
+        nombres_random = random.sample(range(len(self.individus)), taille_groupe)
         #on choisit le plus petit nombre (correspond au meilleur individu car la liste est triée)
         
         vector_individu = {}
 
+        #print(nombres_random)
+
         for n in nombres_random:
+
+            #print(n)
 
             vector_individu[self.individus[n]] = self.individus[n].score
 
         meilleur_indiv_groupe1 = list(sorted(vector_individu.items(), key=lambda t: t[1])[-1])
 
         #On recommence avec un deuxième groupe
-        nombres_random = random.sample(range(taille), taille_groupe-1)
+        nombres_random2 = random.sample(range(len(self.individus)), taille_groupe)
 
-        vector_individu = {}
+        vector_individu2 = {}
 
-        for n in nombres_random:
+        #print(nombres_random2)
 
-            vector_individu[self.individus[n]] = self.individus[n].score
+        for n in nombres_random2:
 
-        meilleur_indiv_groupe2 = list(sorted(vector_individu.items(), key=lambda t: t[1])[-1])
+            #print(n)
+
+            vector_individu2[self.individus[n]] = self.individus[n].score
+
+        meilleur_indiv_groupe2 = list(sorted(vector_individu2.items(), key=lambda t: t[1])[-1])
 
         #On fait un croisement de ces deux individus
         #on choisit quelle section intervertir
