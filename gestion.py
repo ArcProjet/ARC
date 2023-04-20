@@ -4,17 +4,19 @@ from random import randint
 def fctChoice(stage):
     tab = []
     for _ in range(stage):
-        tab.append(randint(0,599))
+        tab.append(randint(0, 599))
     return tab
 
-def generateFctTab(nb,stage):
+
+def generateFctTab(nb, stage):
     tab = []
     for _ in range(nb):
         tab.append(fctChoice(stage))
     return tab
 
-#La fonction utilise des primitives précisé dans le tableau tabFunctions
-def applyFunctions(tabFunctions,grid):
+
+# La fonction utilise des primitives précisé dans le tableau tabFunctions
+def applyFunctions(tabFunctions, grid):
     for i in tabFunctions:
         match i:
             case 0:
