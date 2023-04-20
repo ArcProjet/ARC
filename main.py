@@ -64,6 +64,7 @@ def solveGrid(grid):
     grillestrain,grillestest = grid
     gridTrain1 = grillestrain[0]['input'],grillestrain[0]['output']
     gridTrain2 = grillestrain[1]['input'],grillestrain[1]['output']
+    gridTrain2 = grillestrain[1]['input'],grillestrain[1]['output']
     grillestest = grillestest[0],grillestest[1]
 
     print("[+] Populations choose their King")

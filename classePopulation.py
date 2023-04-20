@@ -10,7 +10,7 @@ import copy
 
 taille = 100
 
-nbCyclesMAX = 10
+nbCyclesMAX = 50
 #taille du groupe de la fonction generernouvelIndividu
 #on prend le meilleur individu d'un groupe de taille_groupe
 taille_groupe=5
@@ -49,39 +49,54 @@ class Population:
         # on sélectionne 5 individus random
         nombres_random = random.sample(range(taille), taille_groupe)
         #on choisit le plus petit nombre (correspond au meilleur individu car la liste est triée)
-        meilleur_indiv_groupe1 = min(nombres_random)
+        
+        vector_individu = {}
+
+        for n in nombres_random:
+
+            vector_individu[self.individus[n]] = self.individus[n].score
+
+        meilleur_indiv_groupe1 = list(sorted(vector_individu.items(), key=lambda t: t[1])[-1])
 
         #On recommence avec un deuxième groupe
         nombres_random = random.sample(range(taille), taille_groupe)
 
-        meilleur_indiv_groupe2 = min(nombres_random)
+        vector_individu = {}
+
+        for n in nombres_random:
+
+            vector_individu[self.individus[n]] = self.individus[n].score
+
+        meilleur_indiv_groupe2 = list(sorted(vector_individu.items(), key=lambda t: t[1])[-1])
 
         #On fait un croisement de ces deux individus
         #on choisit quelle section intervertir
-        numero_section = random.sample(range(taille), 2)
+        numero_section = randint(0,20)
         #on les trie pour faciliter la suite
-        nombres_random.sort()
 
         #On extrait les tableaux de fonctiosn de chaque individus
-        fun_indiv1 = self.individus[meilleur_indiv_groupe1].fonctions
-        fun_indiv2 = self.individus[meilleur_indiv_groupe2].fonctions
+        fun_indiv1 = meilleur_indiv_groupe1[0].fonctions#self.individus[meilleur_indiv_groupe1].fonctions
+        fun_indiv2 = meilleur_indiv_groupe2[0].fonctions#self.individus[meilleur_indiv_groupe2].fonctions
 
-        #
-        index_section = slice(numero_section[0], numero_section[1])
+        #On choisit si on met le vecteur de l'individu 1 avant l'individu 2
+        new_fun1 = []
+        new_fun2 = []
 
-        #On copie une section de chaque individus
-        section_indiv1 = fun_indiv1[index_section]
-        section_indiv2 = fun_indiv2[index_section]
-
-        #On échange les sections
-        fun_indiv1[index_section]=section_indiv2
-        fun_indiv2[index_section]=section_indiv1
+        for i in range(numero_section):
+            new_fun1.append(fun_indiv1[i])
+            new_fun2.append(fun_indiv2[i])
+        
+        for i in range(numero_section,20):
+            new_fun1.append(fun_indiv2[i])
+            new_fun2.append(fun_indiv1[i])
 
         #On créé un nouvel individu avec une des deux sections
         #/!\/!\/!\A l'avenir il faudra créé deux individus d'un coup pour gagner du temps
-        nouvel_individu = Individu(1,self.imageDepart,self.imageEsperee)
-        nouvel_individu.fonctions = fun_indiv1
-        return nouvel_individu
+        nouvel_individu1 = Individu(1,self.imageDepart,self.imageEsperee)
+        nouvel_individu1.fonctions = new_fun1
+        nouvel_individu2 = Individu(1,self.imageDepart,self.imageEsperee)
+        nouvel_individu2.fonctions = new_fun2
+        return nouvel_individu1,nouvel_individu2
 
 
     def evoluerPopulation1Fois(self): # y a t il une fonction qui permet de trier une liste à partir d'un attribut des éléments de cette même liste
@@ -91,8 +106,10 @@ class Population:
         self.trierPopulation()
         # On conserve le meilleur individu
         populationTemp.append(copy.deepcopy(self.individus[0]))
-        for i in range (1,taille):
-            populationTemp.append(self.genererNouveauIndividu())
+        for i in range (1,int(taille//2)+1):
+            ind1,ind2 = self.genererNouveauIndividu()
+            populationTemp.append(ind1)
+            populationTemp.append(ind2)
         self.individus = populationTemp
         self.modifierGrille()
         return
