@@ -10,20 +10,24 @@ import copy
 
 taille = 100
 
-nbCyclesMAX = 50
+taux_mutation = 10
+
+nbCyclesMAX = 10
 #taille du groupe de la fonction generernouvelIndividu
 #on prend le meilleur individu d'un groupe de taille_groupe
 taille_groupe=5
 
 class Population:
     
-    def __init__(self,im,dep):
+    def __init__(self,gridInput,gridWishes):
         self.individus = [None] * taille
-        self.imageEsperee = im
-        self.imageDepart = dep
+        self.gridInput = gridInput
+        self.gridWishes = gridWishes
+        #self.imageEsperee = im
+        #self.imageDepart = dep
         
     def ajouterIndividu(self, index):
-        self.individus[index] = Individu(1,self.imageDepart,self.imageEsperee)
+        self.individus[index] = Individu(1,self.gridInput,self.gridWishes)
         
     def genererPopulation(self):
         for i in range (0, taille): # remplissage complet de la liste
@@ -42,12 +46,12 @@ class Population:
             #print(dicoIndividusTemp)
         l = sorted(dicoIndividusTemp.items(), key=lambda t: t[1])
         self.individus = list(map(lambda x: x[0],l))[::-1]
-        #print("[+] Best individu :",self.individus[0].score)
+        #print("     [-] Best individu :",self.individus[0].score)
         #self.individus = list(dicoIndividusTemp.keys())
     
     def genererNouveauIndividu(self):
         # on sélectionne 5 individus random
-        nombres_random = random.sample(range(taille), taille_groupe)
+        nombres_random = random.sample(range(taille), taille_groupe-1)
         #on choisit le plus petit nombre (correspond au meilleur individu car la liste est triée)
         
         vector_individu = {}
@@ -59,7 +63,7 @@ class Population:
         meilleur_indiv_groupe1 = list(sorted(vector_individu.items(), key=lambda t: t[1])[-1])
 
         #On recommence avec un deuxième groupe
-        nombres_random = random.sample(range(taille), taille_groupe)
+        nombres_random = random.sample(range(taille), taille_groupe-1)
 
         vector_individu = {}
 
@@ -92,10 +96,14 @@ class Population:
 
         #On créé un nouvel individu avec une des deux sections
         #/!\/!\/!\A l'avenir il faudra créé deux individus d'un coup pour gagner du temps
-        nouvel_individu1 = Individu(1,self.imageDepart,self.imageEsperee)
+        nouvel_individu1 = Individu(1,self.gridInput,self.gridWishes)
         nouvel_individu1.fonctions = new_fun1
-        nouvel_individu2 = Individu(1,self.imageDepart,self.imageEsperee)
+        if randint(0,taux_mutation)==0:
+            nouvel_individu1.muter()
+        nouvel_individu2 = Individu(1,self.gridInput,self.gridWishes)
         nouvel_individu2.fonctions = new_fun2
+        if randint(0,taux_mutation)==0:
+            nouvel_individu2.muter()
         return nouvel_individu1,nouvel_individu2
 
 
@@ -126,7 +134,8 @@ class Population:
                 
     def modifierGrille(self):
         for individu in self.individus:
-            individu.grille.modifierGrille(self.imageDepart,individu.fonctions)
+            for i in range(len(self.gridInput)):
+                individu.grille[i].modifierGrille(self.gridInput[i],individu.fonctions)
     
     
     
