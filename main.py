@@ -111,7 +111,7 @@ def solveGrid(grid):
     
     print("[+] Populations choose their King")
 
-    leaderboard1 = KingOfTheHill(gridInput,gridWishes)
+    leaderboard1 = KingOfTheHill(gridInput,gridWishes) 
 
     if leaderboard1[-1].score == 100:
         bestIndividu = leaderboard1[-1]
