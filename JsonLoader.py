@@ -7,8 +7,11 @@ index = open('data/indexTab.txt','r').readlines()
 for i in index:
     indexTab.append(i.replace('\n',''))
 
-def openJsonFile():
-    value = indexTab[randrange(len(indexTab))]
+def openJsonFile(seed=0):
+    if seed != 0:
+        value = seed
+    else:
+        value = indexTab[randrange(len(indexTab))]
     print("[+] Grid used : " + str(value))
     f = open('data/evaluation/' + value + '.json','r')
     data = json.loads(f.read())
