@@ -1,4 +1,3 @@
-from grid import Grid
 from primitive import *
 from random import randint
 

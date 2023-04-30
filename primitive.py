@@ -6516,35 +6516,3 @@ def extendColumn100_9(grid):
        if(j == column):
          res[i][j] = 9
  return res
-
-
-# =================================================== FONCTIONNELLE ====================================================#
-# ================================================== MAIS MIS DE COTE ==================================================#
-
-# #Effectue une inversion des couleurs (VRAIMENT UTILE ?)
-# def inversion(grid):
-#     inverted_grid = [[9 - grid[i][j] for j in range(len(grid[0]))] for i in range(len(grid))]
-#     return inverted_grid
-
-# #Triple la grille sur la hauteur (VRAIMENT UTILE ?)
-# def tripleRow(grid):
-#     res = [[0 for _ in range(len(grid[0]))] for _ in range((len(grid))*3)]
-#     for i in range(0, len(grid)):
-#         for j in range(0, len(grid[i])):
-#             res[i][j] = grid[i][j]
-#             res[len(grid)+i][j] = grid[i][j]
-#             res[(len(grid)*2)+i][j] = grid[i][j]
-#     return res
-#
-# #Triple la grille sur la largeur (VRAIMENT UTILE ?)
-# def tripleColumn(grid):
-#     res = [[0 for _ in range((len(grid[0]))*3)] for _ in range(len(grid))]
-#     for i in range(0, len(grid)):
-#         for j in range(0, len(grid[i])):
-#             res[i][j] = grid[i][j]
-#             res[i][len(grid[0])+j] = grid[i][j]
-#             res[i][(len(grid[0])*2)+j] = grid[i][j]
-#     return res
-
-# ======================================================================================================================#
-# ===================================================== EN TRAVAUX =====================================================#

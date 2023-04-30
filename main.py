@@ -2,7 +2,6 @@ from matplotlib.colors import BoundaryNorm, ListedColormap
 from primitive import *
 from JsonLoader import *
 from gestion import *
-from grid import Grid
 from classeGrille import Grille
 from classeIndividu import Individu
 from classePopulation import Population
@@ -101,7 +100,7 @@ def KingOfTheHill(gridInput,gridWishes):
     return leaderboard
 
 
-def solveGrid(grid):
+def solveGrid(grid,window):
 
     grillestrain,grillestest = grid
     gridInput = grillestrain[0]['input'],grillestrain[1]['input'],grillestrain[2]['input']
@@ -109,7 +108,9 @@ def solveGrid(grid):
     #gridTrain2 = grillestrain[1]['input'],grillestrain[1]['output']
     grillestest = grillestest[0],grillestest[1]
     
+    window.show()
     print("[+] Populations choose their King")
+    window.show()
 
     leaderboard1 = KingOfTheHill(gridInput,gridWishes) 
 
@@ -128,9 +129,13 @@ def solveGrid(grid):
 
         bestIndividu = p1.individus[0]
 
+    window.show()
+
     print("[+] Populations have chosen their King")
 
     print("[+] --------- Prepare for King Battle ---------")
+
+    window.show()
 
   #  bestP1.grille.modifierGrille([gridTrain2[0]],bestP1.fonctions)
   #  print("[+] P1 score in train2 : " + str(bestP1.grille.comparer(gridTrain2[1])))
@@ -182,8 +187,9 @@ def solveGrid(grid):
     plt.show()
     return g.comparer(grillestest[1])
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #score = []
     #for i in indexTab:
     #    print(i)
-    solveGrid(openJsonFile())
+def main(window):
+    solveGrid(openJsonFile(),window)
