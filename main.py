@@ -6,7 +6,7 @@ from classeGrille import Grille
 from classeIndividu import Individu
 from classePopulation import Population
 
-NB_POPULATIONS = 1
+NB_POPULATIONS = 50
 
 
 def displayGrid(gridInput, gridOutput, gridObtain, title1, title2, title3):
